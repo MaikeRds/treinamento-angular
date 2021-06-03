@@ -1,0 +1,8 @@
+::ng-deep .p-menubar  {
+  border: none;
+}
+
+.container {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
