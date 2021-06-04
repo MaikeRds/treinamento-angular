@@ -14,22 +14,21 @@ export class AppComponent implements OnInit{
         {
             label:'Home',
             icon:'pi pi-fw pi-home',
-            routerLink: '/'
+            routerLink: '/',
+            routerLinkActiveOptions: {exact: true}                                 
         },
         {
             label:'Cursos',
             icon:'pi pi-fw pi-file',
-            routerLink: 'cursos'
+            routerLink: 'cursos',
+            routerLinkActiveOptions: {exact: true}
         },
         {
             label:'Login',
             icon:'pi pi-fw pi-sign-in',
-            routerLink: 'login'
-        },
-        {
-            label:'Quit',
-            icon:'pi pi-fw pi-power-off'
-        }
+            routerLink: 'login',
+            routerLinkActiveOptions: {exact: true}
+        }        
     ];
   } 
 }
