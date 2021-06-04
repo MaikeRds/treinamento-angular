@@ -24,6 +24,12 @@ export class AppComponent implements OnInit{
             routerLinkActiveOptions: {exact: true}
         },
         {
+            label:'Cursos com ID',
+            icon:'pi pi-fw pi-file',
+            routerLink: 'curso/2',
+            routerLinkActiveOptions: {exact: true}
+        },
+        {
             label:'Login',
             icon:'pi pi-fw pi-sign-in',
             routerLink: 'login',
