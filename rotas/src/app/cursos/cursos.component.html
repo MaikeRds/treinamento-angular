@@ -1,1 +1,9 @@
-<p>cursos works!</p>
+<br/>
+<p-listbox [options]="cursos" optionLabel="nome" 
+  [listStyle]="{'max-height':'250px'}" (onClick)="cursoRedirect($event)" >
+  <ng-template let-curso pTemplate="item">
+    <a [routerLink]="['/curso',curso.id]" >
+      <div class="p-d-flex" >{{curso.nome}}</div>
+    </a>
+  </ng-template> 
+</p-listbox>

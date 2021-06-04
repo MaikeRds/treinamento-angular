@@ -1,0 +1,23 @@
+ul {
+  padding: 0.5rem 0;
+}
+
+ul li { 
+  margin: 0;
+  padding: 0.5rem 1rem;
+  border: 0 none;
+  color: #495057;
+  transition: box-shadow 0.2s;
+  border-radius: 0;
+}
+
+a { 
+  text-decoration: none;
+  color: #495057;
+  height: 100%;  
+}
+
+::ng-deep .p-listbox-list li {
+  display: block!important;
+}
+
