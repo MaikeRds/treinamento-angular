@@ -6,7 +6,7 @@ import {MenuItem} from 'primeng/api';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   items: MenuItem[] = [];
 
   ngOnInit() {
@@ -15,7 +15,7 @@ export class AppComponent implements OnInit{
             label:'Home',
             icon:'pi pi-fw pi-home',
             routerLink: '/',
-            routerLinkActiveOptions: {exact: true}                                 
+            routerLinkActiveOptions: {exact: true}
         },
         {
             label:'Cursos',
