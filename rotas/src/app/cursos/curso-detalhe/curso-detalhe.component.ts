@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { CursosService } from '../cursos/cursos.service';
+import { CursosService } from '../cursos.service';
+
 
 @Component({
   selector: 'app-curso-detalhe',
@@ -12,7 +13,7 @@ export class CursoDetalheComponent implements OnInit, OnDestroy {
 
   id: string = '';
   inscricao: Subscription = new Subscription();
-  curso: any 
+  curso: any
 
   constructor(
     private route: ActivatedRoute,
