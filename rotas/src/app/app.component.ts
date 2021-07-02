@@ -1,3 +1,4 @@
+import { query } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
 
@@ -21,7 +22,8 @@ export class AppComponent implements OnInit {
             label:'Cursos',
             icon:'pi pi-fw pi-file',
             routerLink: 'cursos',
-            routerLinkActiveOptions: {exact: true}
+            routerLinkActiveOptions: {exact: true},
+            queryParams: {  pagina: 0 }
         },
         {
             label:'Cursos com ID',

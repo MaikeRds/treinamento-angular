@@ -1,3 +1,7 @@
+<p>
+  Lista de Cursos
+</p>
+<p>Página: {{ pagina }}</p>
 <br/>
 <p-listbox [options]="cursos" optionLabel="nome"
   [listStyle]="{'max-height':'250px'}" (onClick)="cursoRedirect($event)" >
@@ -7,3 +11,5 @@
     </a>
   </ng-template>
 </p-listbox>
+<br/>
+<p-button (click)="proximaPagina()">Prox Pagina</p-button>
