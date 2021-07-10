@@ -1,0 +1,21 @@
+
+
+<div class="p-grid">
+  <div class="p-col">
+    <p>Lista de Alunos</p>
+    <p-listbox [options]="alunos" optionLabel="nome"
+      [style]="{'width':'15rem'}"  >
+      <ng-template let-aluno pTemplate="item">
+        <a [routerLink]="['/alunos',aluno.id]" >
+          <div class="p-d-flex" >{{aluno.nome}}</div>
+        </a>
+      </ng-template>
+    </p-listbox>
+  </div>
+  <div class="p-col">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+
+

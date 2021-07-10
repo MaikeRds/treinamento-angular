@@ -1,0 +1,19 @@
+<h3>Criar/Editar Aluno</h3>
+
+<div class="p-field">
+    <label for="id">#</label>
+    <input id="id" type="text" aria-describedby="id" pInputText 
+      [(ngModel)]="aluno.id" [disabled]="true"  />
+</div>
+
+<div class="p-field">
+  <label for="nome">Nome</label>
+  <input id="nome" type="text" aria-describedby="nome" pInputText 
+    [(ngModel)]="aluno.nome" />
+</div>
+
+<div class="p-field">
+  <label for="email">Email</label>
+  <input id="email" type="text" aria-describedby="email" pInputText  
+    [(ngModel)]="aluno.email" />
+</div>
