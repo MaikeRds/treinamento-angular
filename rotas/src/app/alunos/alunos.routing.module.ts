@@ -12,7 +12,7 @@ import { AlunosComponent } from './alunos.component';
 // ]
 
 export const alunosRoutes: Routes = [
-  { path: 'alunos', component: AlunosComponent, children: [
+  { path: '', component: AlunosComponent, children: [
     { path: 'novo', component: AlunosFormComponent },
     { path: ':id', component: AlunosDetalheComponent },
     { path: ':id/edit', component: AlunosFormComponent }
