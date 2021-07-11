@@ -26,6 +26,6 @@ import { AlunosDeactivateGuard } from '../guards/alunos-deactivate.guard';
     AlunosFormComponent,
     AlunosDetalheComponent
   ],
-  providers: [AlunosService, AlunosGuard, AlunosDeactivateGuard]
+  providers: [AlunosService, AlunosGuard]
 })
 export class AlunosModule { }
