@@ -13,8 +13,15 @@ body {
     "Apple Color Emoji", 
     "Segoe UI Emoji", 
     "Segoe UI Symbol";
-  
-  padding: 2em;
+}
+
+
+html {
+  font-size: 0.9rem;
+}
+
+h5 {
+  font-size: 1.25rem;
 }
 
 .p-menuitem-link-active {
