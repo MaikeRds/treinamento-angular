@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AlunosDeactivateGuard } from '../guards/alunos-deactivate.guard';
 import { AlunosGuard } from '../guards/alunos.guard';
 import { AlunosDetalheComponent } from './alunos-detalhe/alunos-detalhe.component';
 import { AlunosFormComponent } from './alunos-form/alunos-form.component';
@@ -18,7 +19,11 @@ export const alunosRoutes: Routes = [
   children: [
     { path: 'novo', component: AlunosFormComponent },
     { path: ':id', component: AlunosDetalheComponent },
-    { path: ':id/edit', component: AlunosFormComponent }
+    { 
+      path: ':id/edit', 
+      component: AlunosFormComponent, 
+      canDeactivate: [AlunosDeactivateGuard] 
+    }
   ] }
 ]
 

@@ -3,13 +3,13 @@
 <div class="p-field">
     <label for="id">#</label>
     <input id="id" type="text" aria-describedby="id" pInputText 
-      [(ngModel)]="aluno.id" [disabled]="true"  />
+      [(ngModel)]="aluno.id" [disabled]="true" />
 </div>
 
 <div class="p-field">
   <label for="nome">Nome</label>
   <input id="nome" type="text" aria-describedby="nome" pInputText 
-    [(ngModel)]="aluno.nome" />
+    [(ngModel)]="aluno.nome" (input)="onInput()" />
 </div>
 
 <div class="p-field">

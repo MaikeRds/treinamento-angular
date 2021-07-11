@@ -10,9 +10,9 @@ export class AlunosGuard implements CanActivateChild {
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       console.log('Guarda de Rota Filha')
-      if(state.url.includes('edit')){
-        return false;
-      }
+      // if(state.url.includes('edit')){
+      //   return false;
+      // }
     return true;
   }
   
