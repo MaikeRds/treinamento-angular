@@ -1,1 +1,14 @@
-<p>login works!</p>
+<h5>Tela de Login</h5>
+<div class="p-field">
+    <label for="username">Username</label>
+    <input [(ngModel)]="usuario.username" id="username" type="text" aria-describedby="username-help" pInputText  />
+    <!-- <small id="username-help">Enter your username to reset your password.</small> -->
+</div>
+
+<div class="p-field">
+  <label for="password">Password</label>
+  <input [(ngModel)]="usuario.password" id="password" type="password" aria-describedby="password-help" pInputText  />
+  <!-- <small id="password-help">Enter your username to reset your password.</small> -->
+</div>
+
+<p-button label="Login" icon="pi pi-check" (click)="fazerLogin()"></p-button>

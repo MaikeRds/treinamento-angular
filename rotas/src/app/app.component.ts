@@ -1,6 +1,7 @@
 import { query } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
+import { AuthService } from './login/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,17 @@ import {MenuItem} from 'primeng/api';
 export class AppComponent implements OnInit {
   items: MenuItem[] = [];
 
+  mostrarMenu: boolean = false;
+
+  constructor(private authService: AuthService ){
+
+  }
+
   ngOnInit() {
+    this.authService.mostrarMenuEmitter.subscribe(
+      mostrar => this.mostrarMenu = mostrar
+    );
+
     this.items = [
         {
             label:'Home',
