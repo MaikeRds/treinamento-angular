@@ -11,6 +11,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { AlunosGuard } from '../guards/alunos.guard';
 import { AlunosDeactivateGuard } from '../guards/alunos-deactivate.guard';
+import { AlunosDetalheResolver } from './guards/alunos-detalhe.resolver';
 
 @NgModule({
   imports: [
@@ -26,6 +27,6 @@ import { AlunosDeactivateGuard } from '../guards/alunos-deactivate.guard';
     AlunosFormComponent,
     AlunosDetalheComponent
   ],
-  providers: [AlunosService, AlunosGuard]
+  providers: [AlunosService, AlunosGuard, AlunosDetalheResolver]
 })
 export class AlunosModule { }

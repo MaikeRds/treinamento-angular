@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Aluno } from '../aluno';
 import { AlunosService } from '../alunos.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { AlunosService } from '../alunos.service';
 export class AlunosDetalheComponent implements OnInit, OnDestroy {
   
   inscricao: Subscription = new Subscription();
-  aluno: any = {}
+  aluno: Aluno = {id: 0, email: '', nome: ''}
 
   constructor(    
     private route: ActivatedRoute,
@@ -20,13 +21,13 @@ export class AlunosDetalheComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit(): void {
-    this.inscricao = this.route.params.subscribe((params: any) => {
-      this.aluno = this.alunosService.getAlunosById(params['id'])
+    // this.inscricao = this.route.params.subscribe((params: any) => {
+    //   this.aluno = this.alunosService.getAlunosById(params['id'])
+    // });
 
-      // if(this.aluno == null){
-      //   this.router.navigate(['/naoEncontrado'])
-      // }
-    });
+    this.inscricao = this.route.data.subscribe(
+        info => this.aluno = info.aluno        
+      );
   }
 
   ngOnDestroy(): void {

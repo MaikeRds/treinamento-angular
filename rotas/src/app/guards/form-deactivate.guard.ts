@@ -12,6 +12,7 @@ export class FormDeactivateGuard implements CanDeactivate<IFormDeactivate> {
     currentRoute: ActivatedRouteSnapshot,
     currentState: RouterStateSnapshot,
     nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {    
+      console.log('FormDeactivateGuard:')
       return component.podeDesativar();
   }
   
