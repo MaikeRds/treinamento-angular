@@ -9,6 +9,7 @@ import { ListboxModule } from 'primeng/listbox';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
+import { AlunosGuard } from '../guards/alunos.guard';
 
 @NgModule({
   imports: [
@@ -24,6 +25,6 @@ import { FormsModule } from '@angular/forms';
     AlunosFormComponent,
     AlunosDetalheComponent
   ],
-  providers: [AlunosService]
+  providers: [AlunosService, AlunosGuard]
 })
 export class AlunosModule { }
