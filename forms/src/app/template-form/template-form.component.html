@@ -1,19 +1,19 @@
 <p-card  header="Forms Template">
-  <form>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <span class="p-float-label">
-      <input id="nome" type="text" pInputText>
+      <input id="nome" type="text" pInputText name="nome" ngModel>
       <label for="nome">Nome</label>
     </span>
 
     <br/>
 
     <span class="p-float-label">
-      <input id="email" type="text" pInputText>
+      <input id="email" type="text" pInputText name="email" ngModel>
       <label for="email">Email</label>
     </span>
     
     <br/>
 
-    <p-button label="Submit" icon="pi pi-check" iconPos="right"></p-button>
+    <p-button label="Submit" type="submit" icon="pi pi-check" iconPos="right"></p-button>
   </form>
 </p-card>
