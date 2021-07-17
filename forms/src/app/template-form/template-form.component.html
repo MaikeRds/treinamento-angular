@@ -1,14 +1,16 @@
 <p-card header="Forms Template">
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <span class="p-float-label">
-      <input id="nome" type="text" pInputText name="nome" [(ngModel)]="usuario.nome">
+      <input id="nome" type="text" pInputText name="nome" 
+      [(ngModel)]="usuario.nome" required>
       <label for="nome">Nome</label>
     </span>
 
     <br/>
 
     <span class="p-float-label">
-      <input id="email" type="text" pInputText name="email" [(ngModel)]="usuario.email">
+      <input id="email" type="text" pInputText name="email" 
+      [(ngModel)]="usuario.email" required email>
       <label for="email">Email</label>
     </span>
     
