@@ -1,21 +1,27 @@
 <p-card header="Forms Template">
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
-    <span class="p-float-label">
+    <span class="p-float-label">    
       <input id="nome" type="text" pInputText name="nome" 
-      [(ngModel)]="usuario.nome" required #nome>
-      <label for="nome">Nome</label>     
+      [(ngModel)]="usuario.nome" required #nome="ngModel">     
+      <label for="nome">Nome</label>
     </span>
-    <div>
+    <small *ngIf="!nome.valid && nome.touched" id="nome-help" class="p-error">
+      Nome é obrigatório.
+    </small>
+    <!-- <div>
       {{nome.className}}
-    </div>
-
+    </div> -->
+  
     <br/>
 
     <span class="p-float-label">
       <input id="email" type="text" pInputText name="email" 
-      [(ngModel)]="usuario.email" required email>
+      [(ngModel)]="usuario.email" required email #email="ngModel">
       <label for="email">Email</label>
     </span>
+    <small *ngIf="!email.valid && email.touched" id="email-help" class="p-error">
+      Email é obrigatório.
+    </small>
     
     <br/>
 
