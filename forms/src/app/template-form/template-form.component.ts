@@ -22,7 +22,7 @@ export class TemplateFormComponent implements OnInit {
       cidade: '',
       estado: ''
     }
-  };  
+  };
 
   constructor(private http: HttpClient) { }
 
@@ -32,6 +32,11 @@ export class TemplateFormComponent implements OnInit {
   onSubmit(form: any) {
     console.log(form);
     console.log(this.usuario);
+
+    this.http.post('https://httpbin.org/post', this.usuario).subscribe(
+      (dados) => {
+        return dados
+      })
   }
 
   verificaValidTouched(campo: any) {
@@ -88,7 +93,7 @@ export class TemplateFormComponent implements OnInit {
     });
   }
 
-  resetaDadosForm(formulario: NgForm){
+  resetaDadosForm(formulario: NgForm) {
     formulario.form.patchValue({
       endereco: {
         numero: null,
