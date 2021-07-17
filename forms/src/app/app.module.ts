@@ -6,18 +6,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { CardModule } from 'primeng/card';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TemplateFormComponent } from './template-form/template-form.component';
-import { DataFormComponent } from './data-form/data-form.component';
+import { TemplateFormModule } from './template-form/template-form.module';
+import { DataFormModule } from './data-form/data-form.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TemplateFormComponent,
-    DataFormComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -27,8 +24,9 @@ import { DataFormComponent } from './data-form/data-form.component';
     ButtonModule,
     InputTextModule,
     MenubarModule,
-    CardModule,
-    AppRoutingModule
+    AppRoutingModule,
+    TemplateFormModule,
+    DataFormModule
   ],
   providers: [],
   bootstrap: [AppComponent]
