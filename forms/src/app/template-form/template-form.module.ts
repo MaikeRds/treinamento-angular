@@ -6,6 +6,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { CardModule } from 'primeng/card';
 import { FormDebugComponent } from '../form-debug/form-debug.component';
+import { CampoControlErroComponent } from '../campo-control-erro/campo-control-erro.component';
 
 
 
@@ -19,7 +20,8 @@ import { FormDebugComponent } from '../form-debug/form-debug.component';
   ],
   declarations: [
     TemplateFormComponent,
-    FormDebugComponent
+    FormDebugComponent,
+    CampoControlErroComponent
   ]
 })
 export class TemplateFormModule { }

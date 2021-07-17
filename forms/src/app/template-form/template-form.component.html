@@ -1,31 +1,98 @@
 <p-card header="Forms Template">
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
-    <span class="p-float-label">    
-      <input id="nome" type="text" pInputText name="nome" 
-      [(ngModel)]="usuario.nome" required #nome="ngModel">     
-      <label for="nome">Nome</label>
-    </span>
-    <small *ngIf="!nome.valid && nome.touched" id="nome-help" class="p-error">
-      Nome é obrigatório.
-    </small>
-    <!-- <div>
-      {{nome.className}}
-    </div> -->
-  
-    <br/>
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12 p-md-12">
+        <span class="p-float-label">
+          <input id="nome" type="text" pInputText name="nome" [(ngModel)]="usuario.nome" required #nome="ngModel">
+          <label for="nome">Nome</label>
+        </span>       
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched(nome)" msgErro="Nome é obrigatório.">
+        </app-campo-control-erro>
+        <!-- <div>
+          {{nome.className}}
+        </div> -->
+      </div>
 
-    <span class="p-float-label">
-      <input id="email" type="text" pInputText name="email" 
-      [(ngModel)]="usuario.email" required email #email="ngModel">
-      <label for="email">Email</label>
-    </span>
-    <small *ngIf="!email.valid && email.touched" id="email-help" class="p-error">
-      Email é obrigatório.
-    </small>
-    
-    <br/>
+      <div class="p-field p-col-12 p-md-12">
+        <span class="p-float-label">
+          <input id="email" type="text" pInputText name="email" [(ngModel)]="usuario.email" required email
+            #email="ngModel">
+          <label for="email">Email</label>
+        </span>       
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched(email)" msgErro="Email é obrigatório.">
+        </app-campo-control-erro>
+      </div>
 
-    <p-button label="Submit" type="submit"  [disabled]="!f.valid" icon="pi pi-check" iconPos="right"></p-button>
+      <div class="p-field p-col-12 p-md-2">
+        <span class="p-float-label">
+          <input id="cep" type="text" pInputText name="cep" required #cep="ngModel" [(ngModel)]="usuario.cep">
+          <label for="cep">CEP</label>
+        </span>
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched(cep)" msgErro="CEP é obrigatório.">
+        </app-campo-control-erro>
+      </div>
+
+      <div class="p-field p-col-12 p-md-2">
+        <span class="p-float-label">
+          <input id="numero" type="text" name="numero" pInputText name="numero" required #numero="ngModel"
+            [(ngModel)]="usuario.numero">
+          <label for="numero">Numero</label>
+        </span>
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched(numero)" msgErro="Número é obrigatório.">
+        </app-campo-control-erro>
+      </div>
+
+      <div class="p-field p-col-12 p-md-8">
+        <span class="p-float-label">
+          <input id="complemento" type="text" pInputText name="complemento" required #complemento="ngModel"
+            [(ngModel)]="usuario.complemento">
+          <label for="complemento">Complemento</label>
+        </span>
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched(complemento)" msgErro="Complemento é obrigatório.">
+        </app-campo-control-erro>
+      </div>
+
+      <div class="p-field p-col-12 p-md-12">
+        <span class="p-float-label">
+          <input id="rua" type="text" pInputText disabled name="rua" required #rua="ngModel" [(ngModel)]="usuario.rua">
+          <label for="rua">Rua</label>
+        </span>
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched(rua)" msgErro="Rua é obrigatório.">
+        </app-campo-control-erro>
+      </div>
+
+      <div class="p-field p-col-12 p-md-5">
+        <span class="p-float-label">
+          <input id="bairro" type="text" pInputText disabled name="bairro" required #bairro="ngModel"
+            [(ngModel)]="usuario.bairro" />
+          <label for="bairro">Bairro</label>
+        </span>
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched(bairro)" msgErro="Bairro é obrigatório.">
+        </app-campo-control-erro>
+      </div>
+
+      <div class="p-field p-col-12 p-md-4">
+        <span class="p-float-label">
+          <input id="cidade" type="text" pInputText disabled name="cidade" required #cidade="ngModel"
+            [(ngModel)]="usuario.cidade" />
+          <label for="cidade">Cidade</label>
+        </span>
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched(cidade)" msgErro="Cidade é obrigatório.">
+        </app-campo-control-erro>
+      </div>
+
+      <div class="p-field p-col-12 p-md-3">
+        <span class="p-float-label">
+          <input id="estado" type="text" pInputText disabled name="estado" required #estado="ngModel"
+            [(ngModel)]="usuario.estado" />
+          <label for="estado">Estado</label>
+        </span>        
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched(estado)" msgErro="Estado é obrigatório.">
+        </app-campo-control-erro>
+      </div>
+
+    </div>
+    <p-button label="Submit" type="submit" [disabled]="!f.valid" icon="pi pi-check" iconPos="right"></p-button>
   </form>
 </p-card>
 
