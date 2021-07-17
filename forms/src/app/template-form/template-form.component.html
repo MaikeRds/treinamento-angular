@@ -2,9 +2,12 @@
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <span class="p-float-label">
       <input id="nome" type="text" pInputText name="nome" 
-      [(ngModel)]="usuario.nome" required>
-      <label for="nome">Nome</label>
+      [(ngModel)]="usuario.nome" required #nome>
+      <label for="nome">Nome</label>     
     </span>
+    <div>
+      {{nome.className}}
+    </div>
 
     <br/>
 
