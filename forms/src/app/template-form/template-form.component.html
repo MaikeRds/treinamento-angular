@@ -5,7 +5,7 @@
         <span class="p-float-label">
           <input id="nome" type="text" pInputText name="nome" [(ngModel)]="usuario.nome" required #nome="ngModel">
           <label for="nome">Nome</label>
-        </span>       
+        </span>
         <app-campo-control-erro [mostrarErro]="verificaValidTouched(nome)" msgErro="Nome é obrigatório.">
         </app-campo-control-erro>
         <!-- <div>
@@ -18,14 +18,19 @@
           <input id="email" type="text" pInputText name="email" [(ngModel)]="usuario.email" required email
             #email="ngModel">
           <label for="email">Email</label>
-        </span>       
+        </span>
         <app-campo-control-erro [mostrarErro]="verificaValidTouched(email)" msgErro="Email é obrigatório.">
         </app-campo-control-erro>
       </div>
+    </div>
 
+    <div ngModelGroup="endereco" class="p-fluid p-formgrid p-grid p-group">
       <div class="p-field p-col-12 p-md-2">
         <span class="p-float-label">
-          <input id="cep" type="text" pInputText name="cep" required #cep="ngModel" [(ngModel)]="usuario.cep">
+          <input id="cep" type="text" pInputText name="cep" required #cep="ngModel" 
+          [(ngModel)]="usuario.endereco.cep"
+          (blur)="consultaCEP($event)"
+          >
           <label for="cep">CEP</label>
         </span>
         <app-campo-control-erro [mostrarErro]="verificaValidTouched(cep)" msgErro="CEP é obrigatório.">
@@ -35,7 +40,7 @@
       <div class="p-field p-col-12 p-md-2">
         <span class="p-float-label">
           <input id="numero" type="text" name="numero" pInputText name="numero" required #numero="ngModel"
-            [(ngModel)]="usuario.numero">
+            [(ngModel)]="usuario.endereco.numero">
           <label for="numero">Numero</label>
         </span>
         <app-campo-control-erro [mostrarErro]="verificaValidTouched(numero)" msgErro="Número é obrigatório.">
@@ -45,7 +50,7 @@
       <div class="p-field p-col-12 p-md-8">
         <span class="p-float-label">
           <input id="complemento" type="text" pInputText name="complemento" required #complemento="ngModel"
-            [(ngModel)]="usuario.complemento">
+            [(ngModel)]="usuario.endereco.complemento">
           <label for="complemento">Complemento</label>
         </span>
         <app-campo-control-erro [mostrarErro]="verificaValidTouched(complemento)" msgErro="Complemento é obrigatório.">
@@ -54,7 +59,8 @@
 
       <div class="p-field p-col-12 p-md-12">
         <span class="p-float-label">
-          <input id="rua" type="text" pInputText disabled name="rua" required #rua="ngModel" [(ngModel)]="usuario.rua">
+          <input id="rua" type="text" pInputText disabled name="rua" required #rua="ngModel"
+            [(ngModel)]="usuario.endereco.rua">
           <label for="rua">Rua</label>
         </span>
         <app-campo-control-erro [mostrarErro]="verificaValidTouched(rua)" msgErro="Rua é obrigatório.">
@@ -64,7 +70,7 @@
       <div class="p-field p-col-12 p-md-5">
         <span class="p-float-label">
           <input id="bairro" type="text" pInputText disabled name="bairro" required #bairro="ngModel"
-            [(ngModel)]="usuario.bairro" />
+            [(ngModel)]="usuario.endereco.bairro" />
           <label for="bairro">Bairro</label>
         </span>
         <app-campo-control-erro [mostrarErro]="verificaValidTouched(bairro)" msgErro="Bairro é obrigatório.">
@@ -74,7 +80,7 @@
       <div class="p-field p-col-12 p-md-4">
         <span class="p-float-label">
           <input id="cidade" type="text" pInputText disabled name="cidade" required #cidade="ngModel"
-            [(ngModel)]="usuario.cidade" />
+            [(ngModel)]="usuario.endereco.cidade" />
           <label for="cidade">Cidade</label>
         </span>
         <app-campo-control-erro [mostrarErro]="verificaValidTouched(cidade)" msgErro="Cidade é obrigatório.">
@@ -84,14 +90,15 @@
       <div class="p-field p-col-12 p-md-3">
         <span class="p-float-label">
           <input id="estado" type="text" pInputText disabled name="estado" required #estado="ngModel"
-            [(ngModel)]="usuario.estado" />
+            [(ngModel)]="usuario.endereco.estado" />
           <label for="estado">Estado</label>
-        </span>        
+        </span>
         <app-campo-control-erro [mostrarErro]="verificaValidTouched(estado)" msgErro="Estado é obrigatório.">
         </app-campo-control-erro>
       </div>
 
     </div>
+
     <p-button label="Submit" type="submit" [disabled]="!f.valid" icon="pi pi-check" iconPos="right"></p-button>
   </form>
 </p-card>
