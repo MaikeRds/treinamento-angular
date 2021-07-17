@@ -29,7 +29,7 @@
         <span class="p-float-label">
           <input id="cep" type="text" pInputText name="cep" required #cep="ngModel" 
           [(ngModel)]="usuario.endereco.cep"
-          (blur)="consultaCEP($event)"
+          (blur)="consultaCEP($event, f)"
           >
           <label for="cep">CEP</label>
         </span>
