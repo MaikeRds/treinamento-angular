@@ -25,6 +25,6 @@
     
     <br/>
 
-    <p-button label="Submit" type="submit" icon="pi pi-check" iconPos="right"></p-button>
+    <p-button label="Submit" type="submit"  [disabled]="!f.valid" icon="pi pi-check" iconPos="right"></p-button>
   </form>
 </p-card>
