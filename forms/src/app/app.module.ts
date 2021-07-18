@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TemplateFormModule } from './template-form/template-form.module';
 import { DataFormModule } from './data-form/data-form.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DataFormModule } from './data-form/data-form.module';
     MenubarModule,
     AppRoutingModule,
     TemplateFormModule,
-    DataFormModule
+    DataFormModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

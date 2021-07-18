@@ -6,6 +6,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 
 import { DataFormComponent } from './data-form.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -16,7 +17,8 @@ import { DataFormComponent } from './data-form.component';
     ReactiveFormsModule,
     ButtonModule,
     InputTextModule,
-    CardModule
+    CardModule,
+    SharedModule
   ]
 })
 export class DataFormModule { }

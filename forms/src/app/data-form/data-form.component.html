@@ -1,1 +1,74 @@
-<p>data-form works!</p>
+<p-card header="Forms Data">
+  <form [formGroup]="formulario">
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12 p-md-12">
+        <span class="p-float-label">
+          <input id="nome" type="text" pInputText formControlName="nome">
+          <label for="nome">Nome</label>
+        </span>
+      </div>
+
+      <div class="p-field p-col-12 p-md-12">
+        <span class="p-float-label">
+          <input id="email" type="text" pInputText formControlName="email">
+          <label for="email">Email</label>
+        </span>
+      </div>
+    </div>
+
+    <div class="p-fluid p-formgrid p-grid p-group">
+      <div class="p-field p-col-12 p-md-2">
+        <span class="p-float-label">
+          <input id="cep" type="text" pInputText name="cep" required />
+          <label for="cep">CEP</label>
+        </span>       
+      </div>
+
+      <div class="p-field p-col-12 p-md-2">
+        <span class="p-float-label">
+          <input id="numero" type="text" name="numero" pInputText name="numero" required>
+          <label for="numero">Numero</label>
+        </span>
+      </div>
+
+      <div class="p-field p-col-12 p-md-8">
+        <span class="p-float-label">
+          <input id="complemento" type="text" pInputText name="complemento" required>
+          <label for="complemento">Complemento</label>
+        </span>
+      </div>
+
+      <div class="p-field p-col-12 p-md-12">
+        <span class="p-float-label">
+          <input id="rua" type="text" pInputText disabled name="rua" required>
+          <label for="rua">Rua</label>
+        </span>
+      </div>
+
+      <div class="p-field p-col-12 p-md-5">
+        <span class="p-float-label">
+          <input id="bairro" type="text" pInputText disabled name="bairro" required />
+          <label for="bairro">Bairro</label>
+        </span>
+      </div>
+
+      <div class="p-field p-col-12 p-md-4">
+        <span class="p-float-label">
+          <input id="cidade" type="text" pInputText disabled name="cidade" required />
+          <label for="cidade">Cidade</label>
+        </span>
+      </div>
+
+      <div class="p-field p-col-12 p-md-3">
+        <span class="p-float-label">
+          <input id="estado" type="text" pInputText disabled name="estado" required />
+          <label for="estado">Estado</label>
+        </span>
+      </div>
+
+    </div>
+    <p-button label="Submit" type="submit" icon="pi pi-check" iconPos="right"></p-button>
+  </form>
+</p-card>
+
+<app-form-debug [form]="formulario"></app-form-debug>
