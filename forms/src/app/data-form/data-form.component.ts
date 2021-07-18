@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-data-form',
@@ -9,23 +10,27 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class DataFormComponent implements OnInit {
 
-  formulario: FormGroup  = new FormGroup({});
+  formulario: FormGroup = new FormGroup({});
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient
-    ) { }
+    private http: HttpClient,
+    private primengConfig: PrimeNGConfig
+  ) { }
 
   ngOnInit(): void {
+    this.primengConfig.ripple = true;
     // this.formulario = new FormGroup({
     //   nome: new FormControl(null),
     //   email: new FormControl(null),
     // });
 
     this.formulario = this.formBuilder.group({
-      nome: [null],
-      email: [null]
+      nome: [null, [Validators.required]],
+      email: [null, [Validators.required, Validators.email]]
     })
+
+    //[Validators.required, Validators.minLength(3), Validators.maxLength(20)]
   }
 
   onSubmit(): void {

@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <div class="p-fluid p-formgrid p-grid p-group">
+    <!-- <div class="p-fluid p-formgrid p-grid p-group">
       <div class="p-field p-col-12 p-md-2">
         <span class="p-float-label">
           <input id="cep" type="text" pInputText name="cep" required />
@@ -66,11 +66,14 @@
         </span>
       </div>
 
-    </div>
-    <button pButton label="Submit" type="submit" icon="pi pi-check" iconPos="right" class="p-button-primary"></button>
-    <button pButton label="Reset" type="reset"  icon="pi pi-check" iconPos="right" class="p-button-secondary"
-    (click)="reset()"></button>
+    </div> -->
+    <p-button label="Submit" type="submit" icon="pi pi-check" iconPos="right" styleClass="p-button-primary"></p-button >
+    <p-button label="Reset" type="reset"  icon="pi pi-check" iconPos="right" styleClass="p-button-secondary"
+    (click)="reset()"></p-button >
+    
   </form>
 </p-card>
+
+
 
 <app-form-debug [form]="formulario"></app-form-debug>
