@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
@@ -26,12 +26,20 @@ export class DataFormComponent implements OnInit {
     // });
 
     this.formulario = this.formBuilder.group({
-      nome: [null, [Validators.required]],
+      nome: [null, [Validators.required, Validators.minLength(3)]],
       email: [null, [Validators.required, Validators.email]]
     })
 
     //[Validators.required, Validators.minLength(3), Validators.maxLength(20)]
   }
+
+  verificaValidTouched(campo: any): boolean {    
+    return !this.formulario.get(campo)?.valid && !!this.formulario.get(campo)?.touched;
+  }
+
+  verificarEmail(): boolean {
+    return !!this.formulario.get('email')?.hasError('email')    
+  } 
 
   onSubmit(): void {
     console.log(this.formulario)

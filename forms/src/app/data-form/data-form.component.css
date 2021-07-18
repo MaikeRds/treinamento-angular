@@ -1,3 +1,7 @@
 :host ::ng-deep  button {
   margin-right: .5em;
 }
+
+.ng-invalid.ng-touched:not(form, .p-group) {
+  border: 1px solid red;
+}

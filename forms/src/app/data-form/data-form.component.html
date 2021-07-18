@@ -6,6 +6,8 @@
           <input id="nome" type="text" pInputText formControlName="nome">
           <label for="nome">Nome</label>
         </span>
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched('nome')" msgErro="Nome é obrigatório.">
+        </app-campo-control-erro>
       </div>
 
       <div class="p-field p-col-12 p-md-12">
@@ -13,6 +15,11 @@
           <input id="email" type="text" pInputText formControlName="email">
           <label for="email">Email</label>
         </span>
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched('email')" msgErro="Email é obrigatório.">
+        </app-campo-control-erro>
+
+        <app-campo-control-erro [mostrarErro]="verificarEmail()" msgErro="Email inválido.">
+        </app-campo-control-erro>
       </div>
     </div>
 
