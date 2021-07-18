@@ -35,7 +35,8 @@ export class TemplateFormComponent implements OnInit {
 
     this.http.post('https://httpbin.org/post', this.usuario).subscribe(
       (dados) => {
-        return dados
+        console.log(dados);
+        form.form.reset()
       })
   }
 

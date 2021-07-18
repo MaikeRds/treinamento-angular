@@ -1,5 +1,5 @@
 <p-card header="Forms Data">
-  <form [formGroup]="formulario" (ngSubmit)="ngSubmit()">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
     <div class="p-fluid p-formgrid p-grid">
       <div class="p-field p-col-12 p-md-12">
         <span class="p-float-label">
@@ -67,7 +67,9 @@
       </div>
 
     </div>
-    <p-button label="Submit" type="submit" icon="pi pi-check" iconPos="right"></p-button>
+    <button pButton label="Submit" type="submit" icon="pi pi-check" iconPos="right" class="p-button-primary"></button>
+    <button pButton label="Reset" type="reset"  icon="pi pi-check" iconPos="right" class="p-button-secondary"
+    (click)="reset()"></button>
   </form>
 </p-card>
 

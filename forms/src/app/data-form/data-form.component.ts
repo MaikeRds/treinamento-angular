@@ -28,12 +28,18 @@ export class DataFormComponent implements OnInit {
     })
   }
 
-  ngSubmit(){
+  onSubmit(): void {
     console.log(this.formulario)
     this.http.post('https://httpbin.org/post', this.formulario.value).subscribe(
       (dados) => {
-        return dados
-      })
+        console.log(dados);
+        //reseta o form
+        this.reset();
+      }, (error: any) => alert('erro'));
+  }
+
+  reset(): void {
+    this.formulario.reset();
   }
 
 }
