@@ -23,57 +23,72 @@
       </div>
     </div>
 
-    <!-- <div class="p-fluid p-formgrid p-grid p-group">
+    <div class="p-fluid p-formgrid p-grid p-group">
+
       <div class="p-field p-col-12 p-md-2">
         <span class="p-float-label">
-          <input id="cep" type="text" pInputText name="cep" required />
+          <input id="cep" type="text" pInputText formControlName="cep"  />
           <label for="cep">CEP</label>
-        </span>       
+        </span>
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched('cep')" msgErro="CEP é obrigatório.">
+        </app-campo-control-erro>       
       </div>
 
       <div class="p-field p-col-12 p-md-2">
         <span class="p-float-label">
-          <input id="numero" type="text" name="numero" pInputText name="numero" required>
+          <input id="numero" type="text" pInputText formControlName="numero" >
           <label for="numero">Numero</label>
         </span>
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched('numero')" msgErro="Numero é obrigatório.">
+        </app-campo-control-erro>  
       </div>
 
       <div class="p-field p-col-12 p-md-8">
         <span class="p-float-label">
-          <input id="complemento" type="text" pInputText name="complemento" required>
+          <input id="complemento" type="text" pInputText formControlName="complemento" >
           <label for="complemento">Complemento</label>
         </span>
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched('complemento')" msgErro="Complemento é obrigatório.">
+        </app-campo-control-erro>
       </div>
 
       <div class="p-field p-col-12 p-md-12">
         <span class="p-float-label">
-          <input id="rua" type="text" pInputText disabled name="rua" required>
+          <input id="rua" type="text" pInputText formControlName="rua" >
           <label for="rua">Rua</label>
         </span>
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched('rua')" msgErro="Rua é obrigatório.">
+        </app-campo-control-erro>
       </div>
 
       <div class="p-field p-col-12 p-md-5">
         <span class="p-float-label">
-          <input id="bairro" type="text" pInputText disabled name="bairro" required />
+          <input id="bairro" type="text" pInputText formControlName="bairro"  />
           <label for="bairro">Bairro</label>
         </span>
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched('bairro')" msgErro="Bairro é obrigatório.">
+        </app-campo-control-erro>
       </div>
 
       <div class="p-field p-col-12 p-md-4">
         <span class="p-float-label">
-          <input id="cidade" type="text" pInputText disabled name="cidade" required />
+          <input id="cidade" type="text" pInputText formControlName="cidade"  />
           <label for="cidade">Cidade</label>
         </span>
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched('cidade')" msgErro="Cidade é obrigatório.">
+        </app-campo-control-erro>
       </div>
 
       <div class="p-field p-col-12 p-md-3">
         <span class="p-float-label">
-          <input id="estado" type="text" pInputText disabled name="estado" required />
+          <input id="estado" type="text" pInputText formControlName="estado"  />
           <label for="estado">Estado</label>
         </span>
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched('estado')" msgErro="Estado é obrigatório.">
+        </app-campo-control-erro>
       </div>
 
-    </div> -->
+    </div>
     <p-button label="Submit" type="submit" icon="pi pi-check" iconPos="right" styleClass="p-button-primary"></p-button >
     <p-button label="Reset" type="reset"  icon="pi pi-check" iconPos="right" styleClass="p-button-secondary"
     (click)="reset()"></p-button >
