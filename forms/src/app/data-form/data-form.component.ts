@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PrimeNGConfig } from 'primeng/api';
+import { IEstado } from '../shared/intefaces/iestado';
+import { DropdownService } from '../shared/services/dropdown.service';
 
 @Component({
   selector: 'app-data-form',
@@ -11,11 +13,13 @@ import { PrimeNGConfig } from 'primeng/api';
 export class DataFormComponent implements OnInit {
 
   formulario: FormGroup = new FormGroup({});
+  estados: IEstado[] = []
 
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private primengConfig: PrimeNGConfig
+    private primengConfig: PrimeNGConfig,
+    private dropdownService: DropdownService
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +44,10 @@ export class DataFormComponent implements OnInit {
     })
 
     //[Validators.required, Validators.minLength(3), Validators.maxLength(20)]
+
+    this.dropdownService.getEstadosBr().subscribe((dados) => {
+      console.log(dados)
+    });
   }
 
   /**
