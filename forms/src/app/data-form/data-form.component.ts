@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PrimeNGConfig } from 'primeng/api';
-import { IEstado } from '../shared/intefaces/iestado';
+import { Estado } from '../shared/models/estado';
 import { DropdownService } from '../shared/services/dropdown.service';
 
 @Component({
@@ -13,8 +13,8 @@ import { DropdownService } from '../shared/services/dropdown.service';
 export class DataFormComponent implements OnInit {
 
   formulario: FormGroup = new FormGroup({});
-  estados: IEstado[] = []
-
+  estados: Estado[] = []
+  
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,

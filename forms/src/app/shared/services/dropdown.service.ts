@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IEstado } from '../intefaces/iestado';
+import { Estado } from '../models/estado';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class DropdownService {
 
   constructor(private http: HttpClient) { }
 
-  getEstadosBr(): Observable<IEstado[]> {
-   return this.http.get<IEstado[]>(this.estadoUrl, { responseType: 'json'});
+  getEstadosBr(): Observable<Estado[]> {
+   return this.http.get<Estado[]>(this.estadoUrl, { responseType: 'json'});
   }
 }
