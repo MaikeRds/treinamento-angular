@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
@@ -42,14 +42,26 @@ export class DataFormComponent implements OnInit {
     //[Validators.required, Validators.minLength(3), Validators.maxLength(20)]
   }
 
+  /**
+   * Verificar se o campo está válido ao realizar um Touched
+   * @param campo Buscar campo no fórmulario;
+   * @returns Retorna verdadeiro ou falso
+   */
   verificaValidTouched(campo: string): boolean {
     return !this.formulario.get(campo)?.valid && !!this.formulario.get(campo)?.touched;
   }
 
+  /**
+   * Verificar se o email é válido.
+   * @returns retorna verdadeiro ou falso.
+   */
   verificarEmail(): boolean {
     return !!this.formulario.get('email')?.hasError('email')
   }
 
+  /**
+   * Submitar dados do formulário ao servidor.
+   */
   onSubmit(): void {
     console.log(this.formulario)
     this.http.post('https://httpbin.org/post', this.formulario.value).subscribe(
@@ -60,8 +72,75 @@ export class DataFormComponent implements OnInit {
       }, (error: any) => alert('erro'));
   }
 
+  /**
+   * Resetar totalmente o formulario
+   */
   reset(): void {
     this.formulario.reset();
+  }
+
+  /**
+   * Fazer busca do CEP e popular dados
+   */
+  consultaCEP() {
+    let cep = this.formulario.get('endereco.cep')?.value;
+
+    //Nova variável "cep" somente com dígitos.
+    cep = cep.replace(/\D/g, '');
+
+    //Verifica se campo cep possui valor informado.
+    if (cep != "") {
+      //Expressão regular para validar o CEP.
+      const validacep = /^[0-9]{8}$/;
+
+      //Valida o formato do CEP.
+      if (validacep.test(cep)) {
+        //Reseta dados do formulário
+        this.resetaDadosForm()
+
+        this.http.get(`https://viacep.com.br/ws/${cep}/json/`)
+          .subscribe((dados) => {
+            this.popularDadosForm(dados);
+          })
+      }
+
+    }
+  }
+
+  /**
+   * Popular dados no formulário
+   * @param dados 
+   */
+  popularDadosForm(dados: any) {
+    //Popular dados
+    this.formulario.patchValue({
+      endereco: {
+        numero: '',
+        complemento: '',
+        rua: dados.logradouro,
+        bairro: dados.bairro,
+        cidade: dados.localidade,
+        estado: dados.uf
+      }
+    });
+
+    //this.formulario.get('nome')?.setValue('Maike');
+  }
+
+  /**
+   * Resetar dados do forulário
+   */
+  resetaDadosForm() {
+    this.formulario.patchValue({
+      endereco: {
+        numero: null,
+        complemento: null,
+        rua: null,
+        bairro: null,
+        cidade: null,
+        estado: null
+      }
+    });
   }
 
 }

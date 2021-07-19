@@ -27,7 +27,7 @@
 
       <div class="p-field p-col-12 p-md-2">
         <span class="p-float-label">
-          <input id="cep" type="text" pInputText formControlName="cep"  />
+          <input id="cep" type="text" pInputText formControlName="cep" (blur)="consultaCEP()" />
           <label for="cep">CEP</label>
         </span>
         <app-campo-control-erro [mostrarErro]="verificaValidTouched('endereco.cep')" msgErro="CEP é obrigatório.">
