@@ -31,30 +31,31 @@
           <label for="cep">CEP</label>
         </span>
         <app-campo-control-erro [mostrarErro]="verificaValidTouched('endereco.cep')" msgErro="CEP é obrigatório.">
-        </app-campo-control-erro>       
+        </app-campo-control-erro>
       </div>
 
       <div class="p-field p-col-12 p-md-2">
         <span class="p-float-label">
-          <input id="numero" type="text" pInputText formControlName="numero" >
+          <input id="numero" type="text" pInputText formControlName="numero">
           <label for="numero">Numero</label>
         </span>
         <app-campo-control-erro [mostrarErro]="verificaValidTouched('endereco.numero')" msgErro="Numero é obrigatório.">
-        </app-campo-control-erro>  
+        </app-campo-control-erro>
       </div>
 
       <div class="p-field p-col-12 p-md-8">
         <span class="p-float-label">
-          <input id="complemento" type="text" pInputText formControlName="complemento" >
+          <input id="complemento" type="text" pInputText formControlName="complemento">
           <label for="complemento">Complemento</label>
         </span>
-        <app-campo-control-erro [mostrarErro]="verificaValidTouched('endereco.complemento')" msgErro="Complemento é obrigatório.">
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched('endereco.complemento')"
+          msgErro="Complemento é obrigatório.">
         </app-campo-control-erro>
       </div>
 
       <div class="p-field p-col-12 p-md-12">
         <span class="p-float-label">
-          <input id="rua" type="text" pInputText formControlName="rua" >
+          <input id="rua" type="text" pInputText formControlName="rua">
           <label for="rua">Rua</label>
         </span>
         <app-campo-control-erro [mostrarErro]="verificaValidTouched('endereco.rua')" msgErro="Rua é obrigatório.">
@@ -63,7 +64,7 @@
 
       <div class="p-field p-col-12 p-md-5">
         <span class="p-float-label">
-          <input id="bairro" type="text" pInputText formControlName="bairro"  />
+          <input id="bairro" type="text" pInputText formControlName="bairro" />
           <label for="bairro">Bairro</label>
         </span>
         <app-campo-control-erro [mostrarErro]="verificaValidTouched('endereco.bairro')" msgErro="Bairro é obrigatório.">
@@ -72,7 +73,7 @@
 
       <div class="p-field p-col-12 p-md-4">
         <span class="p-float-label">
-          <input id="cidade" type="text" pInputText formControlName="cidade"  />
+          <input id="cidade" type="text" pInputText formControlName="cidade" />
           <label for="cidade">Cidade</label>
         </span>
         <app-campo-control-erro [mostrarErro]="verificaValidTouched('endereco.cidade')" msgErro="Cidade é obrigatório.">
@@ -82,7 +83,9 @@
       <div class="p-field p-col-12 p-md-3">
         <span class="p-float-label">
           <!-- <input id="estado" type="text" pInputText formControlName="estado"  /> -->
-          <p-dropdown id="estado" [autoDisplayFirst]="false" formControlName="estado" [options]="estados"  optionLabel="nome" optionValue="sigla"  [class.ng-dirty]="verificaValidTouched('endereco.estado')" ></p-dropdown>
+          <p-dropdown id="estado" [autoDisplayFirst]="false" formControlName="estado" [options]="estados"
+            optionLabel="nome" optionValue="sigla" [class.ng-dirty]="verificaValidTouched('endereco.estado')">
+          </p-dropdown>
           <label for="estado">Estado</label>
         </span>
         <app-campo-control-erro [mostrarErro]="verificaValidTouched('endereco.estado')" msgErro="Estado é obrigatório.">
@@ -90,10 +93,25 @@
       </div>
 
     </div>
-    <p-button label="Submit" type="submit" icon="pi pi-check" iconPos="right" styleClass="p-button-primary"></p-button >
-    <p-button label="Reset" type="reset"  icon="pi pi-check" iconPos="right" styleClass="p-button-secondary"
-    (click)="reset()"></p-button >
-    
+
+    <div class="p-fluid p-formgrid p-grid p-group">
+      <div class="p-field p-col-12 p-md-3">
+        <span class="p-float-label">
+          <!-- <input id="estado" type="text" pInputText formControlName="estado"  /> -->
+          <p-dropdown id="cargo" [autoDisplayFirst]="false" formControlName="cargo" [options]="cargos"
+            optionLabel="desc" dataKey="nivel"></p-dropdown>
+          <label for="cargo">Cargo</label>
+        </span>
+      </div>
+    </div>
+
+
+    <p-button label="Submit" type="submit" icon="pi pi-check" iconPos="right" styleClass="p-button-primary"></p-button>
+    <p-button label="Reset" type="reset" icon="pi pi-check" iconPos="right" styleClass="p-button-secondary"
+      (click)="reset()"></p-button>
+      <p-button label="SetCargo" icon="pi pi-check" iconPos="right" styleClass="p-butto-primary"
+      (click)="setCargo()"></p-button>
+
   </form>
 </p-card>
 

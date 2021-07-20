@@ -14,7 +14,8 @@ import { DropdownService } from '../shared/services/dropdown.service';
 export class DataFormComponent implements OnInit {
 
   formulario: FormGroup = new FormGroup({});
-  estados: Estado[] = []
+  estados: Estado[] = [];
+  cargos: any[] = [];
 
 
   constructor(
@@ -44,6 +45,8 @@ export class DataFormComponent implements OnInit {
         cidade: [null, [Validators.required]],
         estado: [null, [Validators.required]],
       }),
+
+      cargo: [null]
     })
 
     //[Validators.required, Validators.minLength(3), Validators.maxLength(20)]
@@ -51,6 +54,8 @@ export class DataFormComponent implements OnInit {
     this.dropdownService.getEstadosBr().subscribe((dados) => {
       this.estados = dados
     });
+
+    this.cargos = this.dropdownService.getCargos();
   }
 
   /**
@@ -154,6 +159,11 @@ export class DataFormComponent implements OnInit {
         estado: null
       }
     });
+  }
+
+  setCargo(){
+    const cargo =  { nome: null, nivel: 'Pleno', desc: null }; 
+    console.log(this.formulario.get('cargo')?.setValue(cargo));
   }
 
 }
