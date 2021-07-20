@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, NgForm } from '@angular/forms';
-import { map } from 'rxjs/operators'
+import { NgForm } from '@angular/forms';
+import { CepService } from '../shared/services/cep.service';
 
 @Component({
   selector: 'app-template-form',
@@ -24,7 +24,10 @@ export class TemplateFormComponent implements OnInit {
     }
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient, 
+    private cepService: CepService
+    ) { }
 
   ngOnInit(): void {
   }
@@ -46,25 +49,13 @@ export class TemplateFormComponent implements OnInit {
 
   consultaCEP(event: any, form: any) {
     let cep = event.target.value as string;
-
-    //Nova variável "cep" somente com dígitos.
-    cep = cep.replace(/\D/g, '');
-
-    //Verifica se campo cep possui valor informado.
-    if (cep != "") {
-      //Expressão regular para validar o CEP.
-      const validacep = /^[0-9]{8}$/;
-
-      //Valida o formato do CEP.
-      if (validacep.test(cep)) {
-        this.resetaDadosForm(form);
-        this.http.get(`https://viacep.com.br/ws/${cep}/json/`)
-          .subscribe((dados) => {
-            this.popularDadosForm(dados, form);
-          })
-      }
-
-    }
+    this.resetaDadosForm(form);
+    
+    if(cep != null && cep !== '' ){
+      this.cepService.consultaCEP(cep).subscribe((dados: any) => {
+        this.popularDadosForm(dados, form);
+      });
+    }  
   }
 
   popularDadosForm(dados: any, formulario: NgForm) {

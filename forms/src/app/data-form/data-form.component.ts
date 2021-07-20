@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PrimeNGConfig } from 'primeng/api';
-import { Observable } from 'rxjs';
 import { Estado } from '../shared/models/estado';
+import { CepService } from '../shared/services/cep.service';
 import { DropdownService } from '../shared/services/dropdown.service';
 
 @Component({
@@ -16,12 +16,13 @@ export class DataFormComponent implements OnInit {
   formulario: FormGroup = new FormGroup({});
   estados: Estado[] = []
 
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private primengConfig: PrimeNGConfig,
-    private dropdownService: DropdownService
+    private dropdownService: DropdownService,
+    private cepService: CepService
   ) { }
 
   ngOnInit(): void {
@@ -82,10 +83,10 @@ export class DataFormComponent implements OnInit {
           //reseta o form
           this.reset();
         }, (error: any) => alert('erro'));
-    }else{
+    } else {
       console.log('formulario invalido');
       this.formulario.markAllAsTouched()
-     // this.verificaValidacoesForm(this.formulario)
+      // this.verificaValidacoesForm(this.formulario)
     }
   }
 
@@ -112,26 +113,11 @@ export class DataFormComponent implements OnInit {
   consultaCEP() {
     let cep = this.formulario.get('endereco.cep')?.value;
 
-    //Nova variável "cep" somente com dígitos.
-    cep = cep.replace(/\D/g, '');
-
-    //Verifica se campo cep possui valor informado.
-    if (cep != "") {
-      //Expressão regular para validar o CEP.
-      const validacep = /^[0-9]{8}$/;
-
-      //Valida o formato do CEP.
-      if (validacep.test(cep)) {
-        //Reseta dados do formulário
-        this.resetaDadosForm()
-
-        this.http.get(`https://viacep.com.br/ws/${cep}/json/`)
-          .subscribe((dados) => {
-            this.popularDadosForm(dados);
-          })
-      }
-
-    }
+    if(cep != null && cep !== '' ){
+      this.cepService.consultaCEP(cep).subscribe((dados: any) => {
+        this.popularDadosForm(dados);
+      });
+    }  
   }
 
   /**
