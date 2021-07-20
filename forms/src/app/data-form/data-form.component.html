@@ -122,7 +122,12 @@
             <label [for]="newsletter.valor">{{ newsletter.desc }}</label>
           </div>
         </div>
+      </div>
 
+      <div class="p-field p-col-12 p-md-3">
+        <p-checkbox id="termo" [binary]="true" label="Aceito os termos." formControlName="termo"></p-checkbox>
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched('termo')" msgErro="Termo é obrigatório.">
+        </app-campo-control-erro>
       </div>
 
     </div>

@@ -7,7 +7,8 @@ import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { RadioButtonModule } from 'primeng/radiobutton';
-
+import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
+import { CheckboxModule } from 'primeng/checkbox';
 
 import { DataFormComponent } from './data-form.component';
 import { SharedModule } from '../shared/shared.module';
@@ -25,7 +26,10 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
     DropdownModule,
     MultiSelectModule,
-    RadioButtonModule
+    RadioButtonModule,
+    TriStateCheckboxModule,
+    CheckboxModule
+
   ]
 })
 export class DataFormModule { }
