@@ -16,6 +16,7 @@ export class DataFormComponent implements OnInit {
   formulario: FormGroup = new FormGroup({});
   estados: Estado[] = [];
   cargos: any[] = [];
+  tecnologias: any[] = [];
 
 
   constructor(
@@ -46,7 +47,8 @@ export class DataFormComponent implements OnInit {
         estado: [null, [Validators.required]],
       }),
 
-      cargo: [null]
+      cargo: [null],
+      tecnologia: [null]
     })
 
     //[Validators.required, Validators.minLength(3), Validators.maxLength(20)]
@@ -56,6 +58,7 @@ export class DataFormComponent implements OnInit {
     });
 
     this.cargos = this.dropdownService.getCargos();
+    this.tecnologias = this.dropdownService.getTecnologias();
   }
 
   /**
@@ -118,11 +121,11 @@ export class DataFormComponent implements OnInit {
   consultaCEP() {
     let cep = this.formulario.get('endereco.cep')?.value;
 
-    if(cep != null && cep !== '' ){
+    if (cep != null && cep !== '') {
       this.cepService.consultaCEP(cep).subscribe((dados: any) => {
         this.popularDadosForm(dados);
       });
-    }  
+    }
   }
 
   /**
@@ -161,9 +164,19 @@ export class DataFormComponent implements OnInit {
     });
   }
 
-  setCargo(){
-    const cargo =  { nome: null, nivel: 'Pleno', desc: null }; 
-    console.log(this.formulario.get('cargo')?.setValue(cargo));
+  setCargo() {
+    const cargo = { nome: null, nivel: 'Pleno', desc: null };
+
+    this.formulario.get('cargo')?.setValue(cargo);
+  }
+
+  setTecnologias() {
+    const tecnologias = [
+      { nome: 'java', desc: 'Java' },
+      { nome: 'javascript', desc: 'JavaScript' },
+    ];
+
+    this.formulario.get('tecnologia')?.setValue(tecnologias);
   }
 
 }

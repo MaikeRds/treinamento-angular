@@ -5,6 +5,8 @@ import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
+import { MultiSelectModule } from 'primeng/multiselect';
+
 
 import { DataFormComponent } from './data-form.component';
 import { SharedModule } from '../shared/shared.module';
@@ -20,7 +22,8 @@ import { SharedModule } from '../shared/shared.module';
     InputTextModule,
     CardModule,
     SharedModule,
-    DropdownModule
+    DropdownModule,
+    MultiSelectModule
   ]
 })
 export class DataFormModule { }
