@@ -1,6 +1,11 @@
-:host ::ng-deep  button {
+:host ::ng-deep  button  {
   margin-right: .5em;
 }
+
+:host ::ng-deep  p-radioButton  {
+  margin-left: .6em;
+}
+
 
 .ng-invalid.ng-touched:not(form, .p-group, p-dropdown) {
   border: 1px solid red;

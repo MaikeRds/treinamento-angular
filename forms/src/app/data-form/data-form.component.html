@@ -112,6 +112,19 @@
           <label for="tecnologia">Tecnologias</label>
         </span>
       </div>
+
+      <div class="p-col-12 p-md-6 ">
+        <span>Newsletter</span>
+        <div class="p-grid p-field">
+          <div *ngFor="let newsletter of newsletters" class="p-field-radiobutton">
+            <p-radioButton [inputId]="newsletter.valor" [value]="newsletter.valor" formControlName="newsletter">
+            </p-radioButton>
+            <label [for]="newsletter.valor">{{ newsletter.desc }}</label>
+          </div>
+        </div>
+
+      </div>
+
     </div>
 
 
@@ -120,7 +133,8 @@
       (click)="reset()"></p-button>
     <p-button label="SetCargo" icon="pi pi-check" iconPos="right" styleClass="p-butto-primary" (click)="setCargo()">
     </p-button>
-    <p-button label="SetTecnologias" icon="pi pi-check" iconPos="right" styleClass="p-butto-primary" (click)="setTecnologias()">
+    <p-button label="SetTecnologias" icon="pi pi-check" iconPos="right" styleClass="p-butto-primary"
+      (click)="setTecnologias()">
     </p-button>
 
   </form>
