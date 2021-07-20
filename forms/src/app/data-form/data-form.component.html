@@ -81,7 +81,8 @@
 
       <div class="p-field p-col-12 p-md-3">
         <span class="p-float-label">
-          <input id="estado" type="text" pInputText formControlName="estado"  />
+          <!-- <input id="estado" type="text" pInputText formControlName="estado"  /> -->
+          <p-dropdown id="estado" [autoDisplayFirst]="false" formControlName="estado" [options]="estados"  optionLabel="nome" optionValue="sigla"  [class.ng-dirty]="verificaValidTouched('endereco.estado')" ></p-dropdown>
           <label for="estado">Estado</label>
         </span>
         <app-campo-control-erro [mostrarErro]="verificaValidTouched('endereco.estado')" msgErro="Estado é obrigatório.">

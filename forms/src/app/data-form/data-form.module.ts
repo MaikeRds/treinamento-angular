@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { DropdownModule } from 'primeng/dropdown';
 
 import { DataFormComponent } from './data-form.component';
 import { SharedModule } from '../shared/shared.module';
@@ -18,7 +19,8 @@ import { SharedModule } from '../shared/shared.module';
     ButtonModule,
     InputTextModule,
     CardModule,
-    SharedModule
+    SharedModule,
+    DropdownModule
   ]
 })
 export class DataFormModule { }

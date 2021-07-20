@@ -2,6 +2,6 @@
   margin-right: .5em;
 }
 
-.ng-invalid.ng-touched:not(form, .p-group) {
+.ng-invalid.ng-touched:not(form, .p-group, p-dropdown) {
   border: 1px solid red;
 }
