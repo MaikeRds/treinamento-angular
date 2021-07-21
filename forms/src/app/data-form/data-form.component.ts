@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PrimeNGConfig } from 'primeng/api';
 import { Estado } from '../shared/models/estado';
 import { CepService } from '../shared/services/cep.service';
@@ -13,13 +13,25 @@ import { DropdownService } from '../shared/services/dropdown.service';
 })
 export class DataFormComponent implements OnInit {
 
+  /**
+   * Variáveis do componente
+   */
   formulario: FormGroup = new FormGroup({});
   estados: Estado[] = [];
   cargos: any[] = [];
   tecnologias: any[] = [];
   newsletters: any[] = [];
+  frameworks = ['Angular', 'React', 'Vue', 'Sencha'];
 
 
+  /**
+   * Injeções de dependências
+   * @param formBuilder responsável por build do fórmulario
+   * @param http responsável por requisições ao backend
+   * @param primengConfig configuração do template
+   * @param dropdownService serviço com dados mocks
+   * @param cepService serviço de consulta CEP
+   */
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -30,11 +42,14 @@ export class DataFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
+
+    // Exemplo
     // this.formulario = new FormGroup({
     //   nome: new FormControl(null),
     //   email: new FormControl(null),
     // });
 
+    // Formulário - Model Driven Forms
     this.formulario = this.formBuilder.group({
       nome: [null, [Validators.required, Validators.minLength(3)]],
       email: [null, [Validators.required, Validators.email]],
@@ -47,11 +62,11 @@ export class DataFormComponent implements OnInit {
         cidade: [null, [Validators.required]],
         estado: [null, [Validators.required]],
       }),
-
       cargo: [null],
       tecnologia: [null],
       newsletter: ['s'],
-      termo: [false, Validators.pattern('true')]
+      termo: [false, Validators.pattern('true')],
+      frameworks: [[], Validators.required]
     })
 
     //[Validators.required, Validators.minLength(3), Validators.maxLength(20)]
@@ -63,6 +78,14 @@ export class DataFormComponent implements OnInit {
     this.cargos = this.dropdownService.getCargos();
     this.tecnologias = this.dropdownService.getTecnologias();
     this.newsletters = this.dropdownService.getNewsletters();
+  }
+
+  /**
+   * Alternativa para usar Checkboxes Dinâmicos
+   * FormArray
+   */
+  get frameworkForm(): FormControl {
+    return this.formulario.get('frameworks') as FormControl;
   }
 
   /**
@@ -102,15 +125,19 @@ export class DataFormComponent implements OnInit {
     }
   }
 
-  // verificaValidacoesForm(formGroup: FormGroup){
-  //   Object.keys(formGroup.controls).forEach((campo) => {     
-  //     const controle = formGroup.get(campo);
-  //     controle?.markAsTouched()
-  //     if(controle instanceof FormGroup){
-  //       this.verificaValidacoesForm(controle)
-  //     }
-  //   })
-  // }
+  /**
+   * Exemplo Obsoleto
+   * Novo método:  this.formulario.markAllAsTouched()
+   */
+  verificaValidacoesForm(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach((campo) => {
+      const controle = formGroup.get(campo);
+      controle?.markAsTouched()
+      if (controle instanceof FormGroup) {
+        this.verificaValidacoesForm(controle)
+      }
+    })
+  }
 
   /**
    * Resetar totalmente o formulario
@@ -168,12 +195,18 @@ export class DataFormComponent implements OnInit {
     });
   }
 
+  /**
+   * Setar cargos para exemplo
+   */
   setCargo() {
     const cargo = { nome: null, nivel: 'Pleno', desc: null };
 
     this.formulario.get('cargo')?.setValue(cargo);
   }
 
+  /**
+   * Setar tecnologias para exemplo
+   */
   setTecnologias() {
     const tecnologias = [
       { nome: 'java', desc: 'Java' },

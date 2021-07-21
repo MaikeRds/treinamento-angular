@@ -125,8 +125,22 @@
       </div>
 
       <div class="p-field p-col-12 p-md-3">
-        <p-checkbox id="termo" [binary]="true" label="Aceito os termos." formControlName="termo"></p-checkbox>
+        <p-checkbox id="termo" [binary]="true" label="Aceito os termos." formControlName="termo" [class.ng-dirty]="verificaValidTouched('termo')"></p-checkbox>
         <app-campo-control-erro [mostrarErro]="verificaValidTouched('termo')" msgErro="Termo é obrigatório.">
+        </app-campo-control-erro>
+      </div>
+
+      <div class="p-field p-col-12 p-md-9">
+        <label for="frameworks"> Frameworks </label>
+        <div class="p-grid p-field">
+          <div id="frameworks" *ngFor="let framework of frameworks">
+            <p-checkbox inputId="{{framework}}" value="{{framework}}" label="{{framework}}"
+              [formControl]="frameworkForm" [class.ng-dirty]="verificaValidTouched('frameworks')">
+            </p-checkbox>
+          </div>
+        </div>
+
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched('frameworks')" msgErro="Frameworks é obrigatório.">
         </app-campo-control-erro>
       </div>
 
