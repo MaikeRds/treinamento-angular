@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PrimeNGConfig } from 'primeng/api';
+import { FormValidation } from '../shared/form-validation';
 import { Estado } from '../shared/models/estado';
 import { CepService } from '../shared/services/cep.service';
 import { DropdownService } from '../shared/services/dropdown.service';
@@ -54,7 +55,7 @@ export class DataFormComponent implements OnInit {
       nome: [null, [Validators.required, Validators.minLength(3)]],
       email: [null, [Validators.required, Validators.email]],
       endereco: this.formBuilder.group({
-        cep: [null, [Validators.required]],
+        cep: [null, [Validators.required, FormValidation.cepValidator]],
         numero: [null, [Validators.required]],
         complemento: [null, [Validators.required]],
         rua: [null, [Validators.required]],

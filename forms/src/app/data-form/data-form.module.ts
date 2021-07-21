@@ -29,7 +29,6 @@ import { SharedModule } from '../shared/shared.module';
     RadioButtonModule,
     TriStateCheckboxModule,
     CheckboxModule
-
   ]
 })
 export class DataFormModule { }
