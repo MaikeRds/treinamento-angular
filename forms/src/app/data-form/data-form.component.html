@@ -21,6 +21,21 @@
         <app-campo-control-erro [mostrarErro]="verificarEmail()" msgErro="Email inválido.">
         </app-campo-control-erro>
       </div>
+
+      <div class="p-field p-col-12 p-md-12">
+        <span class="p-float-label">
+          <input id="confirmarEmail" type="text" pInputText formControlName="confirmarEmail">
+          <label for="confirmarEmail">Confirmar Email</label>
+        </span>
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched('confirmarEmail')" msgErro="Confirmar email é obrigatório.">
+        </app-campo-control-erro>
+
+        <app-campo-control-erro [mostrarErro]="!!formulario.get('confirmarEmail')?.hasError('confirmarEmail')" msgErro="Confirmar email inválido.">
+        </app-campo-control-erro>
+
+        <app-campo-control-erro [mostrarErro]="!!formulario.get('confirmarEmail')?.hasError('equalsTo')" msgErro="Confirmar email diferente do campo email.">
+        </app-campo-control-erro>
+      </div>
     </div>
 
     <div class="p-fluid p-formgrid p-grid p-group" formGroupName="endereco">
