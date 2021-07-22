@@ -5,13 +5,15 @@ import { CampoControlErroComponent } from './campo-control-erro/campo-control-er
 import { DropdownService } from './services/dropdown.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CepService } from './services/cep.service';
+import { ErrorMsgComponent } from './error-msg/error-msg.component';
 
 
 
 @NgModule({
   declarations: [
     FormDebugComponent,
-    CampoControlErroComponent
+    CampoControlErroComponent,
+    ErrorMsgComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import { CepService } from './services/cep.service';
   ],
   exports: [
     FormDebugComponent,
-    CampoControlErroComponent
+    CampoControlErroComponent,
+    ErrorMsgComponent
   ],
   providers: [
     DropdownService,
