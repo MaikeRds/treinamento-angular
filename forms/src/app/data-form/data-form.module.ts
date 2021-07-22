@@ -12,6 +12,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 
 import { DataFormComponent } from './data-form.component';
 import { SharedModule } from '../shared/shared.module';
+import { VerificaEmailService } from './services/verifica-email.service';
 
 
 
@@ -29,6 +30,7 @@ import { SharedModule } from '../shared/shared.module';
     RadioButtonModule,
     TriStateCheckboxModule,
     CheckboxModule
-  ]
+  ],
+  providers: [VerificaEmailService]
 })
 export class DataFormModule { }

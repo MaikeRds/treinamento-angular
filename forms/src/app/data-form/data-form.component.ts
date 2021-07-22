@@ -2,10 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PrimeNGConfig } from 'primeng/api';
+import { map, tap } from 'rxjs/operators'
+
 import { FormValidation } from '../shared/form-validation';
 import { Estado } from '../shared/models/estado';
 import { CepService } from '../shared/services/cep.service';
 import { DropdownService } from '../shared/services/dropdown.service';
+import { VerificaEmailService } from './services/verifica-email.service';
 
 @Component({
   selector: 'app-data-form',
@@ -38,11 +41,24 @@ export class DataFormComponent implements OnInit {
     private http: HttpClient,
     private primengConfig: PrimeNGConfig,
     private dropdownService: DropdownService,
-    private cepService: CepService
+    private cepService: CepService,
+    private verificaEmailService: VerificaEmailService
   ) { }
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
+
+    this.dropdownService.getEstadosBr().subscribe((dados) => {
+      this.estados = dados
+    });
+
+    this.verificaEmailService.verificarEmail("email1@email.com").subscribe((dados) => {
+    //  console.log(dados)
+    });
+
+    this.cargos = this.dropdownService.getCargos();
+    this.tecnologias = this.dropdownService.getTecnologias();
+    this.newsletters = this.dropdownService.getNewsletters();
 
     // Exemplo
     // this.formulario = new FormGroup({
@@ -53,7 +69,7 @@ export class DataFormComponent implements OnInit {
     // Formulário - Model Driven Forms
     this.formulario = this.formBuilder.group({
       nome: [null, [Validators.required, Validators.minLength(3)]],
-      email: [null, [Validators.required, Validators.email]],
+      email: [null, [Validators.required, Validators.email], [this.validarEmail.bind(this)]],
       confirmarEmail: [null, [Validators.required, Validators.email, FormValidation.equalsTo('email')]],
       endereco: this.formBuilder.group({
         cep: [null, [Validators.required, FormValidation.cepValidator]],
@@ -73,13 +89,7 @@ export class DataFormComponent implements OnInit {
 
     //[Validators.required, Validators.minLength(3), Validators.maxLength(20)]
 
-    this.dropdownService.getEstadosBr().subscribe((dados) => {
-      this.estados = dados
-    });
-
-    this.cargos = this.dropdownService.getCargos();
-    this.tecnologias = this.dropdownService.getTecnologias();
-    this.newsletters = this.dropdownService.getNewsletters();
+  
   }
 
   /**
@@ -216,6 +226,14 @@ export class DataFormComponent implements OnInit {
     ];
 
     this.formulario.get('tecnologia')?.setValue(tecnologias);
+  }
+
+  validarEmail(formControl: FormControl){
+    console.log(formControl.value)
+    return this.verificaEmailService.verificarEmail(formControl.value).pipe(
+      tap(console.log),
+      map( emailExiste => emailExiste ? { emailInvalido : true } : null )
+      );
   }
 
 }

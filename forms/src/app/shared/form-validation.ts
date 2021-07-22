@@ -2,6 +2,8 @@ import { FormArray, FormControl, FormGroup, ValidationErrors } from "@angular/fo
 
 export class FormValidation {
 
+  // https://github.com/yuyang041060120/ng2-validation#readme
+
   static cepValidator(control: FormControl): ValidationErrors | null {
     const cep = control.value;
 
