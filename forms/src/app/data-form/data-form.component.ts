@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PrimeNGConfig } from 'primeng/api';
 import { map, tap } from 'rxjs/operators'
@@ -42,7 +42,8 @@ export class DataFormComponent implements OnInit {
     private primengConfig: PrimeNGConfig,
     private dropdownService: DropdownService,
     private cepService: CepService,
-    private verificaEmailService: VerificaEmailService
+    private verificaEmailService: VerificaEmailService,
+    private ref: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -90,6 +91,10 @@ export class DataFormComponent implements OnInit {
     //[Validators.required, Validators.minLength(3), Validators.maxLength(20)]
 
   
+  }
+
+  ngAfterViewChecked() {
+    this.ref.detectChanges();
   }
 
   /**

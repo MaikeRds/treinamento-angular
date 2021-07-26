@@ -22,48 +22,54 @@ export class ErrorMsgComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(`${ErrorMsgComponent.name} - ngOnInit`)
+    // console.log(`${ErrorMsgComponent.name} - ngOnInit`)
   }
 
   ngOnChanges() {
-    console.log(`${ErrorMsgComponent.name} - ngOnChanges`)
+    // console.log(`${ErrorMsgComponent.name} - ngOnChanges`)
   }
 
   ngOnDestroy() {
-    console.log(`${ErrorMsgComponent.name} - ngOnDestroy`)
+    // console.log(`${ErrorMsgComponent.name} - ngOnDestroy`)
   }
 
   ngAfterContentInit() {
-    console.log(`${ErrorMsgComponent.name} - ngAfterContentInit`)
+   // console.log(`${ErrorMsgComponent.name} - ngAfterContentInit`)
   }
 
   ngAfterContentChecked() {
-    console.log(`${ErrorMsgComponent.name} - ngAfterContentChecked`)
+   // console.log(`${ErrorMsgComponent.name} - ngAfterContentChecked`)
   }
 
   ngAfterViewInit() {
-    console.log(`${ErrorMsgComponent.name} - ngAfterContentInit`)
+   // console.log(`${ErrorMsgComponent.name} - ngAfterContentInit`)
   }
 
   ngAfterViewChecked() {
-    console.log(`${ErrorMsgComponent.name} - ngAfterContentChecked`)
+    // console.log(`${ErrorMsgComponent.name} - ngAfterContentChecked`)
   }
 
   /**
    * Criado para executar uma vez quando o componente tem mudanças.
    */
   ngDoCheck() {
-    console.log(`${ErrorMsgComponent.name} - ngDoCheck`)
+    // console.log(`${ErrorMsgComponent.name} - ngDoCheck`)
     this.errorMessageNovo = this.checkErroMessage();
   }
 
   checkErroMessage(): string | null {
-    console.log(`${ErrorMsgComponent.name} - checkErroMessage`)
-    for (const propertyName in this.control?.errors) {
+    // console.log(`${ErrorMsgComponent.name} - checkErroMessage`)
+    for (const propertyName in this.control?.errors) {     
+
+      //console.log(this.control?.getError(propertyName ));
+      console.log(this.control?.dirty );
+      console.log(this.control?.touched );
       if (
         this.control?.getError(propertyName) &&
-        this.control.touched
+        (this.control.dirty || this.control.touched)
       ) {
+
+        console.log(propertyName)
         return FormValidation.getErrorMsg(this.label, propertyName, this.control.getError(propertyName))
       }
     }
@@ -82,7 +88,7 @@ export class ErrorMsgComponent implements OnInit {
     for (const propertyName in this.control?.errors) {
       if (
         this.control?.getError(propertyName) &&
-        this.control.touched
+        this.control.dirty
       ) {
         return FormValidation.getErrorMsg(this.label, propertyName, this.control.getError(propertyName))
       }
