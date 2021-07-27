@@ -60,16 +60,13 @@ export class ErrorMsgComponent implements OnInit {
   checkErroMessage(): string | null {
     // console.log(`${ErrorMsgComponent.name} - checkErroMessage`)
     for (const propertyName in this.control?.errors) {     
-
-      //console.log(this.control?.getError(propertyName ));
-      console.log(this.control?.dirty );
-      console.log(this.control?.touched );
+      // console.log(this.control?.getError(propertyName ));
+      // console.log(this.control?.dirty );
+      // console.log(this.control?.touched );
       if (
         this.control?.getError(propertyName) &&
         (this.control.dirty || this.control.touched)
       ) {
-
-        console.log(propertyName)
         return FormValidation.getErrorMsg(this.label, propertyName, this.control.getError(propertyName))
       }
     }

@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PrimeNGConfig } from 'primeng/api';
-import { map, tap } from 'rxjs/operators'
+import { EMPTY } from 'rxjs';
+import { empty } from 'rxjs';
+import { distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators'
 
 import { FormValidation } from '../shared/form-validation';
 import { Estado } from '../shared/models/estado';
@@ -54,7 +56,7 @@ export class DataFormComponent implements OnInit {
     });
 
     this.verificaEmailService.verificarEmail("email1@email.com").subscribe((dados) => {
-    //  console.log(dados)
+      //  console.log(dados)
     });
 
     this.cargos = this.dropdownService.getCargos();
@@ -90,7 +92,15 @@ export class DataFormComponent implements OnInit {
 
     //[Validators.required, Validators.minLength(3), Validators.maxLength(20)]
 
-  
+    this.formulario.get('endereco.cep')?.statusChanges
+      .pipe(
+        distinctUntilChanged(),
+        tap(value => console.log('Status do CEP :', value)),
+        switchMap( status => status === 'VALID' ? this.cepService.consultaCEP(
+          this.formulario.get('endereco.cep')?.value) : EMPTY )
+      )
+      .subscribe(dados => dados ? this.popularDadosForm(dados) : {})
+
   }
 
   ngAfterViewChecked() {
@@ -233,12 +243,12 @@ export class DataFormComponent implements OnInit {
     this.formulario.get('tecnologia')?.setValue(tecnologias);
   }
 
-  validarEmail(formControl: FormControl){
+  validarEmail(formControl: FormControl) {
     console.log(formControl.value)
     return this.verificaEmailService.verificarEmail(formControl.value).pipe(
       tap(console.log),
-      map( emailExiste => emailExiste ? { emailInvalido : true } : null )
-      );
+      map(emailExiste => emailExiste ? { emailInvalido: true } : null)
+    );
   }
 
 }

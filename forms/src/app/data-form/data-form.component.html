@@ -63,7 +63,7 @@
 
       <div class="p-field p-col-12 p-md-2">
         <span class="p-float-label">
-          <input id="cep" type="text" pInputText formControlName="cep" (blur)="consultaCEP()" />
+          <input id="cep" type="text" pInputText formControlName="cep" />
           <label for="cep">CEP</label>
         </span>
         <app-error-msg [control]="formulario.get('endereco.cep')" label='CEP' >
