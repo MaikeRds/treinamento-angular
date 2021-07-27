@@ -1,0 +1,3 @@
+.ng-invalid.ng-touched:not(form, .p-group, p-dropdown, p-checkbox) {
+  border: 1px solid red;
+}

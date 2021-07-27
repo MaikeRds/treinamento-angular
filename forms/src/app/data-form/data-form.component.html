@@ -2,17 +2,17 @@
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
     <div class="p-fluid p-formgrid p-grid">
 
-      <div>
-
-      </div>
-      <div class="p-field p-col-12 p-md-12">
+      <app-input-field class="p-col-12 p-md-12" id="nome" label="Nome" ormControlName="nome"
+        [control]="formulario.get('nome')">
+      </app-input-field>
+      <!-- <div class="p-field p-col-12 p-md-12">
         <span class="p-float-label">
           <input id="nome" pInputText formControlName="nome">
           <label for="nome">Nome</label>
         </span>
         <app-error-msg [control]="formulario.get('nome')" label='Nome' >
         </app-error-msg>
-      </div>
+      </div> -->
 
       <div class="p-field p-col-12 p-md-12">
         <span class="p-float-label">
@@ -20,10 +20,11 @@
           <label for="email">Email</label>
         </span>
 
-        <app-error-msg [control]="formulario.get('email')" label='Email' >
+        <app-error-msg [control]="formulario.get('email')" label='Email'>
         </app-error-msg>
 
-        <app-campo-control-erro [mostrarErro]="formulario.get('email')?.status === 'PENDING'" msgErro="Validando email...">
+        <app-campo-control-erro [mostrarErro]="formulario.get('email')?.status === 'PENDING'"
+          msgErro="Validando email...">
         </app-campo-control-erro>
 
         <app-campo-control-erro [mostrarErro]="formulario.get('email')?.status === 'VALID'" msgErro="Email válido!">
@@ -45,7 +46,7 @@
           <label for="confirmarEmail">Confirmar Email</label>
         </span>
 
-        <app-error-msg [control]="formulario.get('confirmarEmail')" label='Confirmar Email' >
+        <app-error-msg [control]="formulario.get('confirmarEmail')" label='Confirmar Email'>
         </app-error-msg>
 
         <!-- <app-campo-control-erro [mostrarErro]="verificaValidTouched('confirmarEmail')" msgErro="Confirmar email é obrigatório.">
@@ -66,7 +67,7 @@
           <input id="cep" type="text" pInputText formControlName="cep" />
           <label for="cep">CEP</label>
         </span>
-        <app-error-msg [control]="formulario.get('endereco.cep')" label='CEP' >
+        <app-error-msg [control]="formulario.get('endereco.cep')" label='CEP'>
         </app-error-msg>
 
         <!-- <app-campo-control-erro [mostrarErro]="verificaValidTouched('endereco.cep')" msgErro="CEP é obrigatório.">
@@ -81,10 +82,10 @@
           <input id="numero" type="text" pInputText formControlName="numero">
           <label for="numero">Numero</label>
         </span>
-        <app-error-msg [control]="formulario.get('endereco.numero')" label='Numero' >
+        <app-error-msg [control]="formulario.get('endereco.numero')" label='Numero'>
         </app-error-msg>
         <!-- <app-campo-control-erro [mostrarErro]="verificaValidTouched('endereco.numero')" msgErro="Numero é obrigatório.">
-        </app-campo-control-erro> -->      
+        </app-campo-control-erro> -->
       </div>
 
       <div class="p-field p-col-12 p-md-8">
@@ -95,7 +96,7 @@
         <!-- <app-campo-control-erro [mostrarErro]="verificaValidTouched('endereco.complemento')"
           msgErro="Complemento é obrigatório.">
         </app-campo-control-erro> -->
-        <app-error-msg [control]="formulario.get('endereco.complemento')" label='Complemento' >
+        <app-error-msg [control]="formulario.get('endereco.complemento')" label='Complemento'>
         </app-error-msg>
       </div>
 
@@ -104,7 +105,7 @@
           <input id="rua" type="text" pInputText formControlName="rua">
           <label for="rua">Rua</label>
         </span>
-        <app-error-msg [control]="formulario.get('endereco.rua')" label='Rua' >
+        <app-error-msg [control]="formulario.get('endereco.rua')" label='Rua'>
         </app-error-msg>
         <!-- <app-campo-control-erro [mostrarErro]="verificaValidTouched('endereco.rua')" msgErro="Rua é obrigatório.">
         </app-campo-control-erro> -->
@@ -117,7 +118,7 @@
         </span>
         <app-campo-control-erro [mostrarErro]="verificaValidTouched('endereco.bairro')" msgErro="Bairro é obrigatório.">
         </app-campo-control-erro>
-        <app-error-msg [control]="formulario.get('endereco.bairro')" label='Bairro' >
+        <app-error-msg [control]="formulario.get('endereco.bairro')" label='Bairro'>
         </app-error-msg>
       </div>
 
@@ -126,7 +127,7 @@
           <input id="cidade" type="text" pInputText formControlName="cidade" />
           <label for="cidade">Cidade</label>
         </span>
-        <app-error-msg [control]="formulario.get('endereco.cidade')" label='Cidade' >
+        <app-error-msg [control]="formulario.get('endereco.cidade')" label='Cidade'>
         </app-error-msg>
         <!-- <app-campo-control-erro [mostrarErro]="verificaValidTouched('endereco.cidade')" msgErro="Cidade é obrigatório.">
         </app-campo-control-erro> -->
@@ -140,7 +141,7 @@
           </p-dropdown>
           <label for="estado">Estado</label>
         </span>
-        <app-error-msg [control]="formulario.get('endereco.estado')" label='Estado' >
+        <app-error-msg [control]="formulario.get('endereco.estado')" label='Estado'>
         </app-error-msg>
         <!-- <app-campo-control-erro [mostrarErro]="verificaValidTouched('endereco.estado')" msgErro="Estado é obrigatório.">
         </app-campo-control-erro>        -->
@@ -179,12 +180,13 @@
       </div>
 
       <div class="p-field p-col-12 p-md-3">
-        <p-checkbox id="termo" [binary]="true" label="Aceito os termos." formControlName="termo" [class.ng-dirty]="verificaValidTouched('termo')"></p-checkbox>
-        <app-error-msg [control]="formulario.get('termo')" label='Aceito os termos' >
+        <p-checkbox id="termo" [binary]="true" label="Aceito os termos." formControlName="termo"
+          [class.ng-dirty]="verificaValidTouched('termo')"></p-checkbox>
+        <app-error-msg [control]="formulario.get('termo')" label='Aceito os termos'>
         </app-error-msg>
-<!--        
+        <!--        
         <app-campo-control-erro [mostrarErro]="verificaValidTouched('termo')" msgErro="Termo é obrigatório.">
-        </app-campo-control-erro> -->        
+        </app-campo-control-erro> -->
       </div>
 
       <div class="p-field p-col-12 p-md-9">
@@ -196,7 +198,7 @@
             </p-checkbox>
           </div>
         </div>
-        <app-error-msg [control]="formulario.get('frameworks')" label='Frameworks é obrigatório.' >
+        <app-error-msg [control]="formulario.get('frameworks')" label='Frameworks é obrigatório.'>
         </app-error-msg>
       </div>
 

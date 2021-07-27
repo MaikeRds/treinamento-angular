@@ -6,6 +6,9 @@ import { DropdownService } from './services/dropdown.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CepService } from './services/cep.service';
 import { ErrorMsgComponent } from './error-msg/error-msg.component';
+import { InputFieldComponent } from './input-field/input-field.component';
+import { InputTextModule } from 'primeng/inputtext';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -13,16 +16,20 @@ import { ErrorMsgComponent } from './error-msg/error-msg.component';
   declarations: [
     FormDebugComponent,
     CampoControlErroComponent,
-    ErrorMsgComponent
+    ErrorMsgComponent,
+    InputFieldComponent
   ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    InputTextModule,
   ],
   exports: [
     FormDebugComponent,
     CampoControlErroComponent,
-    ErrorMsgComponent
+    ErrorMsgComponent,
+    InputFieldComponent
   ],
   providers: [
     DropdownService,

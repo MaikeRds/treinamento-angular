@@ -1,0 +1,8 @@
+<div class="p-field">
+  <span class="p-float-label">
+    <input [attr.id]="id" pInputText [readonly]="isReadOnly" [(ngModel)]="value">
+    <label [attr.for]="id">{{ label }}</label>
+  </span>
+  <app-error-msg [control]="control" [label]='label' >
+  </app-error-msg>
+</div>
