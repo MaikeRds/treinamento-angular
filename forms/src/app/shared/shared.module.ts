@@ -9,6 +9,7 @@ import { ErrorMsgComponent } from './error-msg/error-msg.component';
 import { InputFieldComponent } from './input-field/input-field.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
+import { BaseFormComponent } from './base-form/base-form.component';
 
 
 
@@ -17,7 +18,7 @@ import { FormsModule } from '@angular/forms';
     FormDebugComponent,
     CampoControlErroComponent,
     ErrorMsgComponent,
-    InputFieldComponent
+    InputFieldComponent,
   ],
   imports: [
     CommonModule,
@@ -29,7 +30,7 @@ import { FormsModule } from '@angular/forms';
     FormDebugComponent,
     CampoControlErroComponent,
     ErrorMsgComponent,
-    InputFieldComponent
+    InputFieldComponent,
   ],
   providers: [
     DropdownService,

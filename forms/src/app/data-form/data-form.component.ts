@@ -5,6 +5,7 @@ import { PrimeNGConfig } from 'primeng/api';
 import { EMPTY } from 'rxjs';
 import { empty } from 'rxjs';
 import { distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators'
+import { BaseFormComponent } from '../shared/base-form/base-form.component';
 
 import { FormValidation } from '../shared/form-validation';
 import { Estado } from '../shared/models/estado';
@@ -17,12 +18,12 @@ import { VerificaEmailService } from './services/verifica-email.service';
   templateUrl: './data-form.component.html',
   styleUrls: ['./data-form.component.css']
 })
-export class DataFormComponent implements OnInit {
+export class DataFormComponent  extends BaseFormComponent implements OnInit {
 
   /**
    * Variáveis do componente
    */
-  formulario: FormGroup = new FormGroup({});
+  // formulario: FormGroup = new FormGroup({});
   estados: Estado[] = [];
   cargos: any[] = [];
   tecnologias: any[] = [];
@@ -44,9 +45,10 @@ export class DataFormComponent implements OnInit {
     private primengConfig: PrimeNGConfig,
     private dropdownService: DropdownService,
     private cepService: CepService,
-    private verificaEmailService: VerificaEmailService,
-    private ref: ChangeDetectorRef
-  ) { }
+    private verificaEmailService: VerificaEmailService
+  ) { 
+    super();
+  }
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
@@ -103,10 +105,6 @@ export class DataFormComponent implements OnInit {
 
   }
 
-  ngAfterViewChecked() {
-    this.ref.detectChanges();
-  }
-
   /**
    * Alternativa para usar Checkboxes Dinâmicos
    * FormArray
@@ -116,61 +114,17 @@ export class DataFormComponent implements OnInit {
   }
 
   /**
-   * Verificar se o campo está válido ao realizar um Touched
-   * @param campo Buscar campo no fórmulario;
-   * @returns Retorna verdadeiro ou falso
-   */
-  verificaValidTouched(campo: string): boolean {
-    return !this.formulario.get(campo)?.valid && !!this.formulario.get(campo)?.touched;
-  }
-
-  /**
-   * Verificar se o email é válido.
-   * @returns retorna verdadeiro ou falso.
-   */
-  verificarEmail(): boolean {
-    return !!this.formulario.get('email')?.hasError('email')
-  }
-
-  /**
    * Submitar dados do formulário ao servidor.
    */
-  onSubmit(): void {
+  submit(): void {
     console.log(this.formulario);
 
-    if (this.formulario.valid) {
-      this.http.post('https://httpbin.org/post', this.formulario.value).subscribe(
-        (dados) => {
-          console.log(dados);
-          //reseta o form
-          this.reset();
-        }, (error: any) => alert('erro'));
-    } else {
-      console.log('formulario invalido');
-      this.formulario.markAllAsTouched()
-      // this.verificaValidacoesForm(this.formulario)
-    }
-  }
-
-  /**
-   * Exemplo Obsoleto
-   * Novo método:  this.formulario.markAllAsTouched()
-   */
-  verificaValidacoesForm(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach((campo) => {
-      const controle = formGroup.get(campo);
-      controle?.markAsTouched()
-      if (controle instanceof FormGroup) {
-        this.verificaValidacoesForm(controle)
-      }
-    })
-  }
-
-  /**
-   * Resetar totalmente o formulario
-   */
-  reset(): void {
-    this.formulario.reset();
+    this.http.post('https://httpbin.org/post', this.formulario.value).subscribe(
+      (dados) => {
+        console.log(dados);
+        //reseta o form
+        this.reset();
+      }, (error: any) => alert('erro'));
   }
 
   /**
@@ -202,8 +156,6 @@ export class DataFormComponent implements OnInit {
         estado: dados.uf
       }
     });
-
-    //this.formulario.get('nome')?.setValue('Maike');
   }
 
   /**
@@ -242,6 +194,14 @@ export class DataFormComponent implements OnInit {
 
     this.formulario.get('tecnologia')?.setValue(tecnologias);
   }
+
+   /**
+  * Verificar se o email é válido.
+  * @returns retorna verdadeiro ou falso.
+  */
+    verificarEmail(): boolean {
+      return !!this.formulario.get('email')?.hasError('email')
+    }
 
   validarEmail(formControl: FormControl) {
     console.log(formControl.value)

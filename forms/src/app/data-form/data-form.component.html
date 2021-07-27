@@ -2,7 +2,7 @@
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
     <div class="p-fluid p-formgrid p-grid">
 
-      <app-input-field class="p-col-12 p-md-12" id="nome" label="Nome" ormControlName="nome"
+      <app-input-field class="p-col-12 p-md-12" id="nome" label="Nome" formControlName="nome"
         [control]="formulario.get('nome')">
       </app-input-field>
       <!-- <div class="p-field p-col-12 p-md-12">
