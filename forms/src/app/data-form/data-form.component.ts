@@ -8,6 +8,7 @@ import { distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators'
 import { BaseFormComponent } from '../shared/base-form/base-form.component';
 
 import { FormValidation } from '../shared/form-validation';
+import { Cidade } from '../shared/models/cidade';
 import { Estado } from '../shared/models/estado';
 import { CepService } from '../shared/services/cep.service';
 import { DropdownService } from '../shared/services/dropdown.service';
@@ -25,6 +26,7 @@ export class DataFormComponent  extends BaseFormComponent implements OnInit {
    */
   // formulario: FormGroup = new FormGroup({});
   estados: Estado[] = [];
+  cidades: Cidade[] = [];
   cargos: any[] = [];
   tecnologias: any[] = [];
   newsletters: any[] = [];
@@ -102,6 +104,18 @@ export class DataFormComponent  extends BaseFormComponent implements OnInit {
           this.formulario.get('endereco.cep')?.value) : EMPTY )
       )
       .subscribe(dados => dados ? this.popularDadosForm(dados) : {})
+
+    this.formulario.get('endereco.estado')?.valueChanges
+    .pipe(
+      tap(value => console.log('Novo estado: ', value)),
+      map(estado => this.estados.filter(e => e.sigla === estado)),
+      map((estados: Estado[]): any => estados && estados.length > 0 ? estados[0].id : EMPTY ),
+      switchMap((estadoId: number) => this.dropdownService.getCidadesBr(Number(estadoId))),
+      tap(console.log)
+    )
+    .subscribe(cidades => this.cidades = cidades)
+
+    this.dropdownService.getCidadesBr(1).subscribe(dados => console.log(dados));
 
   }
 
