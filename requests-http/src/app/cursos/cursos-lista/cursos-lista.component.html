@@ -1,1 +1,21 @@
-<p>cursos-lista works!</p>
+<p-card header="Cursos">
+  <p-table [value]="cursos" styleClass="p-datatable-striped">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>#</th>
+        <th>Curso</th>
+        <th style="width:14rem"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-curso>
+      <tr>
+        <td>{{curso.id}}</td>
+        <td>{{curso.nome}}</td>
+        <td>
+          <button pButton pRipple type="button" label="Atualizar" class="p-button-outlined mr-1 p-button-warning"></button>
+          <button pButton pRipple type="button" label="Remover" class="p-button-outlined mr-1 p-button-danger"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>
