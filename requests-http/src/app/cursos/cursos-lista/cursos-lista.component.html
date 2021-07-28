@@ -1,12 +1,12 @@
 <p-card header="Cursos">
-  <p-table [value]="cursos" styleClass="p-datatable-striped">
+  <p-table [value]="cursos" [lazy]="true" onLazyLoad="true"  [loading]="loading" (onLazyLoad)="loadCursos($event)"  styleClass="p-datatable-striped">
     <ng-template pTemplate="header">
       <tr>
         <th>#</th>
         <th>Curso</th>
         <th style="width:14rem"></th>
       </tr>
-    </ng-template>
+    </ng-template>    
     <ng-template pTemplate="body" let-curso>
       <tr>
         <td>{{curso.id}}</td>
