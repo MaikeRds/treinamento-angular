@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, 
+    BlinkMacSystemFont, 
+    "Segoe UI", 
+    Roboto, 
+    Helvetica, 
+    Arial, 
+    sans-serif, 
+    "Apple Color Emoji", 
+    "Segoe UI Emoji", 
+    "Segoe UI Symbol";
+}
+
+
+html {
+  font-size: 0.9rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+.p-menuitem-link-active {
+  background-color: #e9ecef;
+  border-radius: 2px;
+}
