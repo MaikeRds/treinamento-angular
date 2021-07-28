@@ -1,0 +1,26 @@
+
+### Lista de cursos
+GET http://localhost:3000/cursos  HTTP/1.1
+
+### Lista curso
+GET http://localhost:3000/cursos/1  HTTP/1.1
+
+### Cria curso
+POST http://localhost:3000/cursos HTTP/1.1
+content-type: application/json
+
+{
+    "nome": "Java OO"
+}
+
+### Update curso
+PUT http://localhost:3000/cursos/2 HTTP/1.1
+content-type: application/json
+
+{
+    "nome": "Java"
+}
+
+### Update curso
+DELETE http://localhost:3000/cursos/2 HTTP/1.1
+content-type: application/json
