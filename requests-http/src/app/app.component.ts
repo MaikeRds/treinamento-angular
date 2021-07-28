@@ -23,17 +23,17 @@ export class AppComponent implements OnInit {
         routerLinkActiveOptions: { exact: true }
       },
       {
-        label: 'Menu 01',
+        label: 'Cursos',
         icon: 'pi pi-fw pi-file',
-        routerLink: '/menu01',
+        routerLink: '/cursos',
         routerLinkActiveOptions: { exact: true }
       },
-      {
-        label: 'Menu 02',
-        icon: 'pi pi-fw pi-file',
-        routerLink: '/menu02',
-        routerLinkActiveOptions: { exact: true }
-      }
+      // {
+      //   label: 'Menu 02',
+      //   icon: 'pi pi-fw pi-file',
+      //   routerLink: '/menu02',
+      //   routerLinkActiveOptions: { exact: true }
+      // }
     ];
   }
 }
