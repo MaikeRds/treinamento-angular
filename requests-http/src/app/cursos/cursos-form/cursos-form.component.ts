@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { MessageService } from 'primeng/api';
+import { Message, MessageService } from 'primeng/api';
 import { map, switchMap } from 'rxjs/operators';
 import { Curso } from '../curso';
 import { CursosService } from '../cursos.service';
@@ -66,32 +66,33 @@ export class CursosFormComponent implements OnInit {
     this.submitted = true;
     this.formulario.markAllAsTouched()
     console.log(this.formulario.value);
-    if (this.formulario.valid) {
-      console.log('submit');
-      this.cursosService.create(this.formulario.value)
+    if (this.formulario.valid) {    
+
+      let msgSuccess = {
+        summary: 'Curso Criado',
+        detail: 'O curso foi criado com sucesso!',
+      };
+
+      let msgError = {
+        summary: 'Error ao criar curso. ',
+        detail: 'Tente novamente mais tarde. ',
+      };
+
+      if(this.formulario.value.id){
+        msgSuccess.summary =  'Curso Atualizado.';
+        msgSuccess.detail =  'O Curso foi atualizado com sucesso!';
+        msgError.summary = 'Error ao atualizar Curso.';
+        msgError.detail = 'Tente novamente mais tarde. ';
+      }
+
+      this.cursosService.save(this.formulario.value)
         .subscribe(
-          success => {
-            console.log(success);
-            this.messageService.add(
-              {
-                severity: 'success',
-                summary: 'Curso criado',
-                detail: 'O curso foi criado com sucesso!'
-              });
-            this.formulario.reset();
-            this.location.back()
-          },
-          error => {
-            console.error(error)
-            this.messageService.add(
-              {
-                severity: 'error',
-                summary: 'Create error',
-                detail: 'Erro ao criar curso. Tente novamente mais tarde.',
-              });
-          },
+          success => this.handleSuccess(success, msgSuccess),
+          error => this.handleError(error, msgError),
           () => console.log('Request completo')
         )
+
+
     }
   }
 
@@ -102,6 +103,30 @@ export class CursosFormComponent implements OnInit {
 
   hasError(field: string) {
     return this.formulario.get(field)?.errors as any;
+  }
+
+  handleSuccess(success: any, alert: Message): void {
+    console.log(success);
+    this.messageService.add(
+      {
+        severity: 'success',
+        summary: alert.summary,
+        detail: alert.detail,
+      });
+
+    // setTimeout(() => this.messageService.clear(), 4000)
+    this.formulario.reset();
+    this.location.back()
+  }
+
+  handleError(error: any, alert: Message): void {
+    console.log(error)
+    this.messageService.add(
+      {
+        severity: 'error',
+        summary: alert.summary,
+        detail: alert.detail,
+      });
   }
 
 }
