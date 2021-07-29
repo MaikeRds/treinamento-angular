@@ -1,18 +1,28 @@
+<p-messages></p-messages>
+
 <p-card header="Cursos">
-  <p-table [value]="cursos" [lazy]="true" onLazyLoad="true"  [loading]="loading" (onLazyLoad)="loadCursos($event)"  styleClass="p-datatable-striped">
+  <div class="flex align-items-between justify-content-between ">
+    <button pButton pRipple type="button" label="Novo Curso" class="p-button mr-1 p-button-primary"></button>
+    <button pButton pRipple type="button" label="Atualizar Lista" class="p-button-outlined mr-1 p-button-primary"
+      (click)="onRefresh()"></button>
+  </div>
+
+  <p-table [value]="cursos" [lazy]="true" onLazyLoad="true" [loading]="loading" (onLazyLoad)="loadCursos($event)"
+    styleClass="p-datatable-striped">
     <ng-template pTemplate="header">
       <tr>
         <th>#</th>
         <th>Curso</th>
         <th style="width:14rem"></th>
       </tr>
-    </ng-template>    
+    </ng-template>
     <ng-template pTemplate="body" let-curso>
       <tr>
         <td>{{curso.id}}</td>
         <td>{{curso.nome}}</td>
         <td>
-          <button pButton pRipple type="button" label="Atualizar" class="p-button-outlined mr-1 p-button-warning"></button>
+          <button pButton pRipple type="button" label="Atualizar"
+            class="p-button-outlined mr-1 p-button-warning"></button>
           <button pButton pRipple type="button" label="Remover" class="p-button-outlined mr-1 p-button-danger"></button>
         </td>
       </tr>

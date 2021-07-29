@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent } from 'primeng/api';
-import { Observable } from 'rxjs';
-import { finalize, tap } from 'rxjs/operators';
+import { LazyLoadEvent, Message, MessageService } from 'primeng/api';
+import { EMPTY, Observable } from 'rxjs';
+import { catchError, finalize, tap } from 'rxjs/operators';
 import { Curso } from '../curso';
 import { CursosService } from '../cursos.service';
 
 @Component({
   selector: 'app-cursos-lista',
   templateUrl: './cursos-lista.component.html',
-  styleUrls: ['./cursos-lista.component.scss']
+  styleUrls: ['./cursos-lista.component.scss'],
+  providers: [MessageService]
 })
 export class CursosListaComponent implements OnInit {
 
@@ -16,26 +17,44 @@ export class CursosListaComponent implements OnInit {
   cursos$ = new Observable<any>()
   loading: boolean = true;
 
-  constructor(private service: CursosService) { }
+  constructor(
+    private service: CursosService,
+    private messageService: MessageService
+  ) { }
 
   ngOnInit(): void {
-    this.service.list().subscribe(dados => { 
-      this.cursos = dados;
-      this.loading = false;
-    });
-    //this.cursos$ = this.service.list()
+    this.onRefresh();
+  }
 
+  onRefresh() {
+    this.loading = true;
+
+    this.service.list()
+      .subscribe(dados => {
+        this.cursos = dados;
+        this.loading = false;
+      },
+        error => {
+          console.error(error);
+          this.loading = false;
+          this.messageService.add(
+            { 
+              severity: 'error', 
+              summary: 'Loading error', 
+              detail: 'Erro ao carregar cursos. Tente novamente mais tarde.' 
+          });
+          return EMPTY;
+        }
+      );
   }
 
   loadCursos(event: LazyLoadEvent) {
     console.log(event)
     this.loading = true;
-    console.log('aaa')
-
   }
 
   ngAfterViewChecked() {
-  
+
   }
 
 }
