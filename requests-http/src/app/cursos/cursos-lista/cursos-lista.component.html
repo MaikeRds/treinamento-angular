@@ -1,12 +1,15 @@
 <p-messages></p-messages>
 
-<p-card header="Cursos">
-  <div class="flex align-items-between justify-content-between ">
-    <button pButton pRipple type="button" label="Novo Curso" class="p-button mr-1 p-button-primary"></button>
-    <button pButton pRipple type="button" label="Atualizar Lista" class="p-button-outlined mr-1 p-button-primary"
-      (click)="onRefresh()"></button>
-  </div>
 
+<div class="flex align-items-between justify-content-between ">
+  <button pButton pRipple type="button" label="Novo Curso" class="p-button mr-1 p-button-primary" [routerLink]="['novo']" ></button>
+  <button pButton pRipple type="button" label="Atualizar Lista" class="p-button-outlined mr-1 p-button-primary"
+    (click)="onRefresh()"></button>
+</div>
+
+<br/>
+
+<p-card header="Cursos">
   <p-table [value]="cursos" [lazy]="true" onLazyLoad="true" [loading]="loading" (onLazyLoad)="loadCursos($event)"
     styleClass="p-datatable-striped">
     <ng-template pTemplate="header">

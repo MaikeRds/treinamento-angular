@@ -8,15 +8,21 @@ import { MessageModule } from 'primeng/message';
 
 import { CursosRoutingModule } from './cursos-routing.module';
 import { CursosListaComponent } from './cursos-lista/cursos-lista.component';
+import { CursosFormComponent } from './cursos-form/cursos-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
-    CursosListaComponent
+    CursosListaComponent,
+    CursosFormComponent
   ],
   imports: [
     CommonModule,
     CursosRoutingModule,
+    ReactiveFormsModule,
     CardModule,
+    InputTextModule,
     TableModule,
     ButtonModule,
     MessagesModule,

@@ -1,0 +1,21 @@
+<p-card header="Novo Curso">
+  <form [formGroup]="formulario">
+    <div class="p-field p-col-12 p-md-12">
+      <span class="p-float-label" >
+        <input id="nome" type="text" pInputText formControlName="nome" [ngClass]="{'ng-dirty' : formulario.get('nome')?.touched }" />
+        <label for="nome">Nome</label>
+      </span>
+      <small *ngIf="formulario.get('nome')?.touched && formulario.get('nome')?.hasError('required')" class="p-error">
+        Nome obrigatório.
+      </small>
+      <small *ngIf="formulario.get('nome')?.touched && formulario.get('nome')?.hasError('minlength')" class="p-error">
+        Nome precisa ter no minímo 3 caracteres.
+      </small>
+    </div>
+
+    <div style="margin-top: 10px;">
+      <button pButton pRipple type="button" label="Salvar" class="p-button mr-1 p-button-primary" (click)="onSubmit()"></button>
+      <button pButton pRipple type="button" label="Cancelar" class="p-button mr-1 p-button-text" (click)="onCancel()"></button>
+    </div>
+  </form>
+</p-card>
