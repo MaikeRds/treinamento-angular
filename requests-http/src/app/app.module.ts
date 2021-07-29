@@ -9,6 +9,10 @@ import { InputTextModule } from 'primeng/inputtext';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SharedModule } from './shared/shared.module';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -22,9 +26,12 @@ import { AppComponent } from './app.component';
     ButtonModule,
     InputTextModule,
     MenubarModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule,
+    MessagesModule,
+    MessageModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

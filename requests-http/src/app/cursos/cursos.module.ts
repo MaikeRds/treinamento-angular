@@ -24,9 +24,7 @@ import { InputTextModule } from 'primeng/inputtext';
     CardModule,
     InputTextModule,
     TableModule,
-    ButtonModule,
-    MessagesModule,
-    MessageModule
+    ButtonModule,   
   ]
 })
 export class CursosModule { }

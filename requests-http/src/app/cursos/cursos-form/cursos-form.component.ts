@@ -7,8 +7,7 @@ import { CursosService } from '../cursos.service';
 @Component({
   selector: 'app-cursos-form',
   templateUrl: './cursos-form.component.html',
-  styleUrls: ['./cursos-form.component.scss'],
-  providers: [MessageService]
+  styleUrls: ['./cursos-form.component.scss']
 })
 export class CursosFormComponent implements OnInit {
 
@@ -54,7 +53,7 @@ export class CursosFormComponent implements OnInit {
               {
                 severity: 'error',
                 summary: 'Create error',
-                detail: 'Erro ao criar curso. Tente novamente mais tarde.'
+                detail: 'Erro ao criar curso. Tente novamente mais tarde.',
               });
           },
           () => console.log('Request completo')
