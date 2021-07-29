@@ -23,7 +23,7 @@
         <td>{{curso.nome}}</td>
         <td>
           <button pButton pRipple type="button" label="Atualizar"
-            class="p-button-outlined mr-1 p-button-warning"></button>
+            class="p-button-outlined mr-1 p-button-warning" (click)="onClick(curso.id)"></button>
           <button pButton pRipple type="button" label="Remover" class="p-button-outlined mr-1 p-button-danger"></button>
         </td>
       </tr>

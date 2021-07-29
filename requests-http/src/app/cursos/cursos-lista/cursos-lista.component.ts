@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LazyLoadEvent, Message, MessageService } from 'primeng/api';
 import { EMPTY, Observable } from 'rxjs';
 import { Curso } from '../curso';
@@ -19,7 +20,9 @@ export class CursosListaComponent implements OnInit {
 
   constructor(
     private service: CursosService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -50,6 +53,11 @@ export class CursosListaComponent implements OnInit {
   loadCursos(event: LazyLoadEvent) {
     console.log(event)
     this.loading = true;
+  }
+
+  onClick(id: any){
+    console.log(id)
+    this.router.navigate(['editar', id], { relativeTo: this.route })
   }
 
   ngAfterViewChecked() {

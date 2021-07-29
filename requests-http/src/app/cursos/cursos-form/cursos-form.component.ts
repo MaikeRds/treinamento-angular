@@ -1,7 +1,10 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { map, switchMap } from 'rxjs/operators';
+import { Curso } from '../curso';
 import { CursosService } from '../cursos.service';
 
 @Component({
@@ -18,13 +21,41 @@ export class CursosFormComponent implements OnInit {
     private fb: FormBuilder,
     private cursosService: CursosService,
     private messageService: MessageService,
-    private location: Location
+    private location: Location,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    // this.route.params.subscribe((params: any) => {
+    //   const id = params['id'];
+    //   const curso$ = this.cursosService.loadById(id);
+    //   curso$.subscribe((curso): void =>  {
+    //     this.updateForm(curso);
+    //   });
+    // });
+
+    this.route.params
+    .pipe(
+      map((params: any) => params['id']),
+      switchMap((id: any) => this.cursosService.loadById(id))
+    )
+    .subscribe((curso: Curso) => this.updateForm(curso));
+
+    // concatMap => ordem da requisição importa
+    // mergeMap => ordem nao importa
+    // exhaustMap => casos de login
+
     this.formulario = this.fb.group({
+      id: [null],
       nome: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(250)]]
     });
+  }
+
+  updateForm(curso: Curso){
+    this.formulario.patchValue({
+      id: curso.id,
+      nome: curso.nome
+    })
   }
 
   onSubmit() {
