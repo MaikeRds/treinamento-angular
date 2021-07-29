@@ -1,11 +1,11 @@
-
 <div class="flex align-items-between justify-content-between ">
-  <button pButton pRipple type="button" label="Novo Curso" class="p-button mr-1 p-button-primary" [routerLink]="['novo']" ></button>
+  <button pButton pRipple type="button" label="Novo Curso" class="p-button mr-1 p-button-primary"
+    [routerLink]="['novo']"></button>
   <button pButton pRipple type="button" label="Atualizar Lista" class="p-button-outlined mr-1 p-button-primary"
     (click)="onRefresh()"></button>
 </div>
 
-<br/>
+<br />
 
 <p-card header="Cursos">
   <p-table [value]="cursos" [lazy]="true" onLazyLoad="true" [loading]="loading" (onLazyLoad)="loadCursos($event)"
@@ -22,9 +22,10 @@
         <td>{{curso.id}}</td>
         <td>{{curso.nome}}</td>
         <td>
-          <button pButton pRipple type="button" label="Atualizar"
-            class="p-button-outlined mr-1 p-button-warning" (click)="onClick(curso.id)"></button>
-          <button pButton pRipple type="button" label="Remover" class="p-button-outlined mr-1 p-button-danger"></button>
+          <button pButton pRipple type="button" label="Atualizar" class="p-button-outlined mr-1 p-button-warning"
+            (click)="onClick(curso.id)"></button>
+          <button pButton pRipple type="button" label="Remover" class="p-button-outlined mr-1 p-button-danger"
+            (click)="confirm($event, curso)"></button>
         </td>
       </tr>
     </ng-template>
