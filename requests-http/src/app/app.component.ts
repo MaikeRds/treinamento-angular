@@ -28,6 +28,12 @@ export class AppComponent implements OnInit {
         routerLink: '/cursos',
         routerLinkActiveOptions: { exact: true }
       },
+      {
+        label: 'Upload Arquivo',
+        icon: 'pi pi-fw pi-file',
+        routerLink: '/upload',
+        routerLinkActiveOptions: { exact: true }
+      },
       // {
       //   label: 'Menu 02',
       //   icon: 'pi pi-fw pi-file',

@@ -15,6 +15,7 @@ import { ConfirmationService } from 'primeng/api';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
+import { UploadFileModule } from './upload-file/upload-file.module';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
     MessagesModule,
     MessageModule,
-    ConfirmPopupModule
+    ConfirmPopupModule,
+    UploadFileModule
   ],
   providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent]
