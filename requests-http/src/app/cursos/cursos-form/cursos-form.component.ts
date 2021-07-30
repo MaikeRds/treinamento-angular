@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Message, MessageService } from 'primeng/api';
 import { map, switchMap } from 'rxjs/operators';
 import { Curso } from '../curso';
-import { CursosService } from '../cursos.service';
+import { Cursos2Service } from '../cursos2.service';
 
 @Component({
   selector: 'app-cursos-form',
@@ -19,7 +19,7 @@ export class CursosFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private cursosService: CursosService,
+    private cursosService: Cursos2Service,
     private messageService: MessageService,
     private location: Location,
     private route: ActivatedRoute

@@ -4,6 +4,7 @@ import { ConfirmationService, LazyLoadEvent, Message, MessageService } from 'pri
 import { EMPTY, Observable } from 'rxjs';
 import { Curso } from '../curso';
 import { CursosService } from '../cursos.service';
+import { Cursos2Service } from '../cursos2.service';
 
 @Component({
   selector: 'app-cursos-lista',
@@ -19,7 +20,7 @@ export class CursosListaComponent implements OnInit {
   messages: any
 
   constructor(
-    private service: CursosService,
+    private service: Cursos2Service,
     private messageService: MessageService,
     private router: Router,
     private route: ActivatedRoute,
@@ -66,6 +67,8 @@ export class CursosListaComponent implements OnInit {
       target: event?.target as EventTarget,
       message: 'Are you sure that you want to proceed?',
       icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Sim',
+      rejectLabel: 'Não',
       accept: () => {
         if (curso && curso.id) {
           this.service.delete(curso.id).subscribe(
