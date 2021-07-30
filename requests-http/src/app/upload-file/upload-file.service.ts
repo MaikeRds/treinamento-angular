@@ -16,8 +16,12 @@ export class UploadFileService {
       formData.append('file', file, file.name)
     })
 
-    const http = new HttpRequest('POST', url, formData);
+     // const request = new HttpRequest('POST', url, formData);
+    // return this.http.request(request);
 
-    return this.http.request(http);
+    return this.http.post(url, formData, {
+      observe: 'events',
+      reportProgress: true
+    });
   }
 }

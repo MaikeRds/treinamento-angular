@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { HttpEvent, HttpEventType } from '@angular/common/http';
+import { ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {  Subscription } from 'rxjs';
 import { UploadFileService } from '../upload-file.service';
 
@@ -21,9 +22,7 @@ export class UploadFileComponent implements OnInit, OnDestroy {
   }
   
   onUpload(event: any) {
-    this.fileUpload.progress = 5;
-    console.log(event)
-    console.log(this.fileUpload);
+    this.fileUpload.progress = 0;
 
     const selectedFiles = <FileList>event.files;
     console.log(selectedFiles)
@@ -34,10 +33,23 @@ export class UploadFileComponent implements OnInit, OnDestroy {
     }
     
     if(this.files && this.files.size > 0 ){
-      this.upload$ =  this.uploadFileService.upload(this.files, 'api/upload')      
-      .subscribe((res) => {
-        console.log('upload concluído!');   
-        this.fileUpload.progress += 95;    
+      this.upload$ =  this.uploadFileService.upload(this.files, 'api/upload')
+      .subscribe((event: HttpEvent<any> ) => {
+        let progress = 0 ;
+        switch(event.type){
+          case HttpEventType.Response:
+            console.log('Upload Concluído'); 
+            progress = 100;
+            //this.fileUpload.onProgress.emit({ origialEvent: event, progress: progress });
+            // this.fileUpload.onUpload.emit({ files: this.files, origialEvent: event });
+            // this.fileUpload.onClear.emit({ files: this.files, origialEvent: event });            
+            break;
+          case HttpEventType.UploadProgress:
+            progress += Math.round((event.loaded * 100) / (event.total  ? event.total :  1 ));
+            console.log('Upload: '+  Math.round((event.loaded * 100) / (event.total  ? event.total :  1 )));
+           this.fileUpload.onProgress.emit({ origialEvent: event, progress: progress });
+            break;         
+        }   
       },
       err => console.error(err)
       );
@@ -45,7 +57,8 @@ export class UploadFileComponent implements OnInit, OnDestroy {
   }
 
   onProgress(event: any){
-    console.log(event);
+    console.log('onProgress: ' + event.progress);
+    this.fileUpload.progress = event.progress;
   }
   
   ngOnDestroy(): void {
