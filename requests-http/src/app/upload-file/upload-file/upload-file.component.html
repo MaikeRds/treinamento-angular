@@ -1,3 +1,8 @@
 <p>upload-file works!</p>
 
 <p-fileUpload #fileUpload name="myfile[]" [disabled]="!!files" (onProgress)="onProgress($event)" [customUpload]="true" (uploadHandler)="onUpload($event)"></p-fileUpload>
+
+<br/>
+<p-button label="Download Excel" class="mr-1 " icon="pi pi-check" iconPos="left"
+(click)="onDownloadExcel()"></p-button>
+<p-button label="Download PDF" class="mr-1 " icon="pi pi-check" iconPos="left"></p-button>

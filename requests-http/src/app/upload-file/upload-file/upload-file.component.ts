@@ -75,4 +75,18 @@ export class UploadFileComponent implements OnInit, OnDestroy {
     this.upload$.unsubscribe()
   }
 
+  onDownloadExcel() {
+    this.uploadFileService.download('api/downloadExcel')
+    .subscribe((res: any) => {
+      this.uploadFileService.handleFile(res, 'report.xlsx');
+    });
+  }
+
+  onDownloadPDF() {
+    this.uploadFileService.download('api/downloadPDF')
+    .subscribe((res: any) => {
+      this.uploadFileService.handleFile(res, 'report.pdf');
+    });
+  }
+
 }
